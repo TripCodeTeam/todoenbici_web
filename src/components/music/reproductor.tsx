@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Howl } from "howler";
 import { Song } from "../../app/music/types";
 import styles from "./reproductor.module.css";
@@ -24,12 +24,12 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
     setSound(newSound);
   };
 
-  const stopSong = () => {
+  const stopSong = useCallback(() => {
     if (sound) {
       sound.stop();
       setSound(null);
     }
-  };
+  }, [sound]);
 
   const handlePlayButtonClick = (song: Song) => {
     if (currentSong && currentSong.id === song.id) {
@@ -49,7 +49,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
     return () => {
       stopSong();
     };
-  }, []);
+  }, [stopSong]);
 
   return (
     <div className={styles.playerBox}>
