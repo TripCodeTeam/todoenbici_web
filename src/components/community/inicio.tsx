@@ -20,7 +20,7 @@ const query = gql`
 
 function CommunityInit() {
   const { data } = useQuery(query);
-  const playerRef = useRef<HTMLVideoElement>(null);
+  const playerRef = useRef(null);
   const [isLive, setIsLive] = useState(false);
 
   return (
