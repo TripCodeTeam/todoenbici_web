@@ -4,7 +4,14 @@ import React, { FormEvent, useState } from "react";
 import axios from "axios";
 import { Toaster, toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { UserTypes } from "@/components/types/User";
+
+interface UserTypes {
+  username: string;
+  avatar: string;
+  password: string;
+  email: string;
+  token: string;
+}
 
 function Signup() {
   const route = useRouter();
@@ -14,8 +21,6 @@ function Signup() {
     avatar: "",
     password: "",
     email: "",
-    stream: [],
-    store: [],
     token: "",
   });
 
