@@ -1,0 +1,17 @@
+.footer {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: "Poppins", sans-serif;
+    margin-top: 1em;
+}
+
+.footer h2 {
+    text-align: center;
+}
+
+.footer p {
+    text-align: center;
+}

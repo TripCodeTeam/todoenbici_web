@@ -1,0 +1,106 @@
+.boxProperty {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.boxesInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.titleInfo {
+  margin-bottom: 0.4em;
+}
+
+.titleInfoBitacora {
+  margin-top: 1em;
+}
+
+.boxProperty p {
+  display: grid;
+  place-content: center;
+}
+
+.boxIcon {
+  display: grid;
+  place-content: center;
+}
+
+.icon {
+  color: #343434;
+}
+
+.bitacoraContainer {
+  background: #eaeaea;
+  height: 34vh;
+  overflow: scroll; 
+  padding: 10px;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cardBitacora {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  /* padding: 5px 10px 5px 10px; */
+  padding: 10px;
+  background: #fff;
+  border-radius: 1em;
+}
+
+.boxImage {
+  flex-basis: 200px;
+  flex-grow: 1;
+}
+
+.boxDetails {
+  flex-basis: 200px;
+  flex-grow: 1;
+  display: grid;
+  place-content: center;
+}
+
+.boxImage {
+  display: grid;
+  place-content: center;
+  padding: 5px 10px 5px 10px;
+}
+
+.imgBitacora {
+  width: 100%;
+  height: auto;
+  border-radius: 1em;
+}
+
+.bitacoraContent {
+  display: grid;
+  place-content: center;
+  padding: 5px 10px 5px 10px;
+}
+
+.dateBox {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.subDate {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  padding: 5px 10px 5px 10px;
+}
+
+.subDate p {
+  font-size: 12px;
+}
+
+.dateIcon {
+  display: grid;
+  place-content: center;
+}

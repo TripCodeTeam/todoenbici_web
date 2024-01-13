@@ -1,0 +1,522 @@
+@keyframes show {
+  from {
+    opacity: 0;
+    scale: 25%;
+  }
+
+  to {
+    opacity: 1;
+    scale: 100%;
+  }
+}
+
+.banner {
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  height: 100vh;
+  width: 100%;
+  padding-top: 1.3em;
+  display: grid;
+  place-content: center;
+  background-image: url("/fondo.jpg");
+  /* opacity: 0.5; */
+  margin-bottom: 3em;
+  -webkit-background-size: cover;
+}
+
+.bannerPhrase {
+  font-family: "Alfa Slab One", serif;
+  width: 90%;
+  margin-left: 5%;
+  color: #ffee00;
+  font-size: 120px;
+  text-align: center;
+  font-weight: 400;
+  z-index: 2;
+  filter: drop-shadow(5px 5px 5px #666666);
+}
+
+.subMain {
+  display: grid;
+  place-content: center;
+}
+
+.Main02 {
+  min-height: 100vh;
+}
+
+.iconMarker {
+  width: 100%;
+  height: auto;
+}
+
+.view01 {
+  width: 90%;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  width: 90%;
+  margin-left: 5%;
+  font-family: "Poppins", sans-serif;
+  gap: 2em;
+  view-timeline-name: --image;
+  view-timeline-axis: block;
+
+  animation-timeline: --image;
+  animation-name: show;
+
+  animation-range: entry 20% cover 30%;
+  animation-fill-mode: both;
+}
+
+.boxServices {
+  flex-basis: 200px;
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.boxServices:hover {
+  scale: 1.03;
+  transition: scale .5s;
+}
+
+.iconoBanner {
+  width: 100%;
+  height: auto;
+  border-radius: 1em;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.iconoBanner:hover {
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.tituloCard {
+  position: relative;
+  top: -220px;
+  left: 25px;
+  color: #f1f1f1;
+  font-weight: 400;
+  font-size: 25px;
+}
+
+.explorer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0.5em;
+}
+
+.boxIcon {
+  display: grid;
+  place-content: center;
+  padding-right: 5px;
+  transition: padding-right 0.3s; /* Agregamos una transición para suavizar el cambio */
+}
+
+.bannerEbookImg {
+  width: 90%;
+  margin-left: 5%;
+  height: auto;
+}
+
+.cardService:hover .boxIcon {
+  padding-right: 0px;
+}
+
+.MusicSeccion {
+  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  width: 90%;
+  margin-left: 5%;
+  font-family: "Poppins", sans-serif;
+}
+
+.infoMusicBtn {
+  flex-basis: 400px;
+  flex-grow: 1;
+  display: grid;
+  place-content: center;
+}
+
+.subInfoMusicBtn {
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  padding: 10px;
+  background: #f1f1f1;
+  border-radius: 1em;
+}
+
+.subInfoMusicBtn p {
+  font-size: 1.6vw;
+}
+
+.boxMusicInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.boxMusicInfo p {
+  display: grid;
+  place-content: center;
+}
+
+.noteIconBox {
+  display: grid;
+  place-content: center;
+}
+
+.mainInformation {
+  margin-top: 3em;
+  display: grid;
+  place-content: center;
+  justify-content: space-between;
+}
+
+.biografic {
+  width: 90%;
+  margin-left: 5%;
+  margin-bottom: 3em;
+  display: grid;
+  place-content: center;
+}
+
+.informationBox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.infoCard {
+  flex-basis: 1000;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 2em;
+}
+
+.infoIcon {
+  display: grid;
+  place-content: center;
+}
+
+.textInfoCard {
+  text-align: center;
+  font-size: 1.3vw;
+  font-family: "Poppins", sans-serif;
+}
+
+@media screen and (max-width: 900px) {
+  .bannerPhrase {
+    font-size: 50px;
+  }
+
+  .subInfoMusicBtn p {
+    font-size: 4.5vw;
+  }
+
+  .textInfoCard {
+    font-size: 4vw;
+  }
+}
+
+.aboutMain {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  min-height: 100vh;
+  margin-left: 5%;
+  view-timeline-name: --image;
+  view-timeline-axis: block;
+  animation-timeline: --image;
+  animation-name: show;
+  animation-range: entry 20% cover 30%;
+  animation-fill-mode: both;
+  justify-content: space-between;
+}
+
+.boxImage {
+  flex-basis: 400px;
+  flex-grow: 1;
+  display: grid;
+  place-content: center;
+}
+
+.subceo_info h2 {
+  margin-bottom: 1em;
+}
+
+.iconCEO {
+  width: 80%;
+  height: auto;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.ceo_info {
+  flex-basis: 400px;
+  flex-grow: 1;
+  display: grid;
+  place-content: center;
+}
+
+.textInfoCEO {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+}
+
+.subRedBox {
+  padding-top: 15px;
+}
+
+.subRedBox p {
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 15px;
+}
+
+.pasarellIconss {
+  display: grid;
+  place-content: center;
+}
+
+.centerIcons {
+  display: flex;
+  gap: 20px;
+}
+
+.iconYoutube {
+  color: #939393;
+  cursor: pointer;
+}
+
+.iconYoutube:hover {
+  color: red;
+  scale: 1.03;
+  transition: scale .3s;
+}
+
+.iconFacebook {
+  color: #939393;
+  cursor: pointer;
+}
+
+.iconFacebook:hover {
+  color: #6565ff;
+  scale: 1.03;
+  transition: scale .3s;
+}
+
+.iconInstagram {
+  color: #939393;
+  cursor: pointer;
+}
+
+.iconInstagram:hover {
+  color: #cc6a6a;
+  scale: 1.03;
+  transition: scale .3s;
+}
+
+.iconTiktok {
+  color: #939393;
+  cursor: pointer;
+}
+
+.iconTiktok:hover {
+  color: #000;
+  scale: 1.03;
+  transition: scale .3s;
+}
+
+.textPatro {
+  width: 100%;
+  text-align: center;
+  margin-top: 3em;
+  font-size: 30px;
+  font-family: "Poppins", sans-serif;
+}
+
+.barBtnYoutube {
+  display: grid;
+  place-content: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  /* padding: 10px; */
+}
+
+.realBtnYtb {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  background: red;
+  padding: 10px;
+  border-radius: 1em;
+  cursor: pointer;
+  color: #fff;
+  z-index: 3;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.realBtnYtb:hover {
+  scale: 1.03;
+  transition: scale .3s;
+}
+
+.realBtnYtb p {
+  font-weight: 200;
+}
+
+.realBtnIconBox {
+  display: grid;
+  place-content: center;
+}
+
+.cubeLogos {
+  display: grid;
+  place-content: center;
+}
+
+.centerLogos {
+  display: flex;
+  flex-direction: row;
+}
+
+.imgLogos {
+  display: grid;
+  place-content: center;
+}
+
+.iconLogo {
+  width: 300px;
+  height: auto;
+}
+
+.iconLogo:hover {
+  scale: 1.03;
+  cursor: pointer;
+  transition: scale .3s;
+}
+
+.services_title {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+@media screen and (max-width: 800px) {
+  .boxImage {
+    display: grid;
+    place-content: end;
+  }
+
+  .ceo_info {
+    display: grid;
+    place-content: start;
+    margin-top: 2em;
+  }
+
+  .iconCEO {
+    width: 100%;
+    height: auto;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .iconLogo {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.Main02 {
+  margin-top: 3em;
+  /* view-timeline-name: --image;
+  view-timeline-axis: block;
+  animation-timeline: --image;
+  animation-name: show;
+  animation-range: entry 20% cover 30%;
+  animation-fill-mode: both;
+  justify-content: space-between; */
+}
+
+.view001 {
+  width: 90%;
+  /* margin-top: 3em; */
+  margin-bottom: 3em;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  width: 90%;
+  margin-left: 5%;
+  font-family: "Poppins", sans-serif;
+  gap: 2em;
+  view-timeline-name: --image;
+  view-timeline-axis: block;
+
+  animation-timeline: --image;
+  animation-name: show;
+
+  animation-range: entry 20% cover 30%;
+  animation-fill-mode: both;
+}
+
+.containerVideo {
+  display: grid;
+  place-content: center;
+}
+
+@media screen and (max-width: 700px) {
+  .banner {
+    background-size: cover;
+    background-image: url("/fondo_responsive_2.jpg");
+  }
+
+  .view001 {
+    animation-range: entry 20% cover 13%;
+  }
+}
+
+.bannerInstagram {
+  margin-bottom: 3em;
+  margin-top: 3em;
+  background: #da5454;
+  padding-bottom: 2em;
+}
+
+.btnInstagram {
+  display: grid;
+  place-content: center;
+}
+
+.boxIconRed {
+  display: grid;
+  place-content: center;
+}
+
+.centerBtnInstagram {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 1em;
+  cursor: pointer;
+  color: #f1f1f1;
+  background: #dd4141;
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.centerBtnInstagram:hover {
+  scale: 1.02;
+  transition: scale .3s;
+}
+
+.textInstagramBtn {
+  font-size: 30px;
+  font-family: 'Pacifico', cursive;
+}

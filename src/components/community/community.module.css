@@ -1,0 +1,49 @@
+.boxLive {
+  display: grid;
+  place-content: center;
+  margin-top: 3em;
+}
+
+.boxLiveStream {
+  width: 700px;
+  height: auto;
+  object-fit: cover;
+}
+
+.warninNoLive {
+    display: grid;
+    place-content: center;
+    margin-top: 1em;
+}
+
+.centerWarning {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.textWarn {
+    display: grid;
+    place-content: center;
+}
+
+.boxIconSignal {
+    display: grid;
+    place-content: center;
+}
+
+.iconSignal {
+    color: red;
+}
+
+@media screen and (max-width: 800px) {
+  .boxLive {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .boxLiveStream {
+    width: 100%;
+    height: auto;
+  }
+}

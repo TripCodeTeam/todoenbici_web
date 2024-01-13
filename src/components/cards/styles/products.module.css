@@ -1,0 +1,125 @@
+.containerProduts {
+    width: 90%;
+    margin-left: 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 80px;
+    font-family: 'Poppins', sans-serif;
+    object-fit: cover;
+}   
+
+.productBox {
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #bfbfbf;
+}
+
+.productBox:hover {
+    background: #f1f1f1;
+}
+
+.cartStore {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+
+.count {
+    display: grid;
+    place-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+}
+
+.iconAddCart {
+    display: grid;
+    place-content: center;
+}
+
+.iconAdd {
+    cursor: pointer;
+}
+
+/* .iconProduct {
+    width: 100%;
+    height: auto;
+} */
+
+.nameProduct {
+    text-align: center;
+}
+
+.boxImageProduct {
+    display: grid;
+    place-content: center;
+}
+
+.textDescription {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.boxPrecio {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.subBoxPrecio {
+    display: grid;
+    place-content: center;
+}
+
+.btnPagar {
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid #bfbfbf;
+}
+
+.btnPagar:hover {
+    background: #ffffff;
+}
+
+.btnsPrecio {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.infoStoreBar {
+    width: 90%;
+    margin-left: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 3em;
+}
+
+.titleStore {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+}
+
+.widget {
+    display: grid;
+    place-content: center;
+    padding: 5px;
+    /* background: #d6d6d6; */
+    border-radius: 50%;
+}
+
+/* .widget:hover {
+    background: #d6d6d6;
+} */
+
+.iconWidget {
+    cursor: pointer;
+}
+
+.count {
+    font-size: 15px;
+    font-weight: 200;
+}

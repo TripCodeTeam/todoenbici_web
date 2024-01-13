@@ -1,0 +1,31 @@
+.playerBox {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 1em;
+}
+
+.subPlayerBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.subPlayerBox p {
+    display: grid;
+    place-content: center;
+}
+
+.subPlayerBox:hover {
+    background: #d1d1d1;
+    border-radius: 1em;
+}
+
+.boxIcon {
+    display: grid;
+    place-content: center;
+}
+
+.icon {
+    cursor: pointer;
+}

@@ -1,0 +1,31 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: #e2e0e0;
+  padding: 5px;
+  /* position: fixed; */
+  width: 100%;
+  z-index: 1;
+}
+
+.subPartNav {
+  display: grid;
+  place-content: center;
+  gap: 10px;
+}
+
+.subPartNavOpt {
+    display: flex;
+    flex-direction: row;
+}
+
+.btnNav {
+  padding: 5px 10px 5px 10px;
+  cursor: pointer;
+}
+
+.btnNav:hover {
+  background: #ffffff;
+  /* border-radius: 1em; */
+}

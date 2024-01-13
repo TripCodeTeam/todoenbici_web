@@ -1,0 +1,62 @@
+.form {
+  min-width: 300px;
+  padding: 20px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 1em;
+}
+
+.infoForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.input {
+  padding: 5px 10px 5px 10px;
+  border-radius: 1em;
+}
+
+.btnSubmit {
+  display: grid;
+  place-content: center;
+}
+
+.btnSubmit button {
+  background: #5ce05c;
+  border: none;
+  padding: 5px 10px 5px 10px;
+  border-radius: 1em;
+  cursor: pointer;
+  color: #fff;
+}
+
+.btnSubmit button:hover {
+  background: #46d146;
+}
+
+.boxIcons {
+  display: grid;
+  place-content: center;
+}
+
+.centerIcons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.icon {
+  color: #464646;
+}
+
+.loginMessage {
+  color: #464646;
+  text-align: center;
+  margin-top: 5px;
+  display: grid;
+  place-content: center;
+}

@@ -1,0 +1,103 @@
+{
+    "artista": [
+        {
+            "id": 1,
+            "name": "Dedos Secos",
+            "albumes": [
+                {
+                    "id": 1,
+                    "name": "Al filo de lo correcto",
+                    "image": "dedos_secos_02.png",  
+                    "songs": [
+                        {
+                            "id": 1,
+                            "name": "Alas",
+                            "track": "/music/dedos_secos/al_filo_delo_correcto/Alas.mp3"
+                        },
+                        {
+                            "id": 2,
+                            "name": "Déjà Vu",
+                            "track": "/music/dedos_secos/al_filo_delo_correcto/Deja Vu.mp3"
+                        },
+                        {
+                            "id": 3,
+                            "name": "Asfalto y adoquín",
+                            "track": "/music/dedos_secos/al_filo_delo_correcto/Asfalto y adoquin.mp3"
+                        },
+                        {
+                            "id": 4,
+                            "name": "Un lustro y un poquito más",
+                            "track": "/music/dedos_secos/al_filo_delo_correcto/Un lustro y un poquito mas.mp3"
+                        },
+                        {
+                            "id": 5,
+                            "name": "200 días",
+                            "track": "/music/dedos_secos/al_filo_delo_correcto/200 dias.mp3"
+                        },
+                        {
+                            "id": 6,
+                            "name": "MA",
+                            "track": "/music/dedos_secos/al_filo_delo_correcto/MA.mp3"
+                        },
+                        {
+                            "id": 7,
+                            "name": "Noches de blues",
+                            "track": "/music/dedos_secos/al_filo_delo_correcto/Noche de blues.mp3"
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "name": "Sin lugar en el mundo",
+                    "songs": [
+                        {
+                            "id": 1,
+                            "name": "7 dias",
+                            "track": "/music/dedos_secos/sin_lugar_enel_mundo/29_minutos.mp3"
+                        },
+                        {
+                            "id": 2,
+                            "name": "Viajar",
+                            "track": "/music/dedos_secos/sin_lugar_enel_mundo/29_minutos.mp3"
+                        },
+                        {
+                            "id": 3,
+                            "name": "Blues del artesano",
+                            "track": "/music/dedos_secos/sin_lugar_enel_mundo/29_minutos.mp3"
+                        },
+                        {
+                            "id": 4,
+                            "name": "Sin titulos",
+                            "track": "/music/dedos_secos/sin_lugar_enel_mundo/29_minutos.mp3"
+                        },
+                        {
+                            "id": 5,
+                            "name": "Nómades los dos",
+                            "track": "/music/dedos_secos/sin_lugar_enel_mundo/29_minutos.mp3"
+                        },
+                        {
+                            "id": 6,
+                            "name": "Perro",
+                            "track": "/music/dedos_secos/sin_lugar_enel_mundo/29_minutos.mp3"
+                        },
+                        {
+                            "id": 7,
+                            "name": "Dia feliz",
+                            "track": "/music/dedos_secos/sin_lugar_enel_mundo/29_minutos.mp3"
+                        },
+                        {
+                            "id": 8,
+                            "name": "Vino patero",
+                            "track": "/music/dedos_secos/sin_lugar_enel_mundo/29_minutos.mp3"
+                        },
+                        {
+                            "id": 9,
+                            "name": "Sueños",
+                            "track": "/music/dedos_secos/sin_lugar_enel_mundo/29_minutos.mp3"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

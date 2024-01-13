@@ -1,0 +1,151 @@
+/* NavBar */
+
+.header {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  position: fixed;
+  top: 0; /* Lo fija en la parte superior */
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  transition: background-color 0.3s;
+}
+
+.logo {
+  flex-basis: 400px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  background: transparent;
+}
+
+.imageLogo {
+  display: grid;
+  place-content: center;
+}
+
+.iconLogo {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.logoTitle {
+  display: grid;
+  place-content: center;
+  font-family: 'Pacifico', cursive;
+  font-weight: 200;
+  font-size: 20px;
+  margin: 0;
+  color: #b61515;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.account {
+  display: flex;
+  flex-basis: 400px;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
+.subAccount {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.login {
+  padding: 5px 10px 5px 10px;
+  margin: 0;
+  text-decoration: none;
+  color: #5d5d5d;
+  cursor: pointer;
+  border-radius: 1em;
+  font-family: "Poppins", sans-serif;
+  display: grid;
+  place-content: center;
+}
+
+.login:hover {
+  background: #cacaca;
+  color: #ffff;
+}
+
+.menuIcon {
+  display: grid;
+  place-content: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.menuIcon:hover {
+  background: #eee;
+  border-radius: 5px;
+}
+
+.menuIconClose {
+  background: transparent;
+}
+
+/* DropDown */
+
+.dropdown {
+  font-family: "Poppins", sans-serif;
+  position: absolute;
+  max-width: 300px;
+  height: 380px;
+  background-color: #a9a9a9;
+  border-radius: 1em;
+  padding: 10px;
+  width: 75%;
+  right: 10px;
+  top: 10px;
+  bottom: 0;
+  display: grid;
+  align-content: center;
+  gap: .6rem;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown_list {
+  list-style: none;
+}
+
+.dropdown_list:hover {
+  background: #c3c3c3;
+  border-radius: 1em;
+  cursor: pointer;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown_link:hover, .dropdown_link {
+  color: #6e6e6e;
+}
+
+.dropdown_link {
+  color: #ffffff;
+  padding: 1em 0.7em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.iconCloseDrop {
+  color: #ffffff;
+}
+
+.iconCloseDrop:hover {
+  color: gray;
+}
+
+.boxBtnClose {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}

@@ -1,0 +1,5 @@
+.mapContainer {
+    border-radius: 1em;
+    min-width: 100%;
+    position: relative;
+}

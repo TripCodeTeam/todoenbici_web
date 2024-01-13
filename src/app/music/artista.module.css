@@ -1,0 +1,188 @@
+.ArtistContainer {
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Nunito Sans", sans-serif;
+  margin-top: 5em;
+  /* background: linear-gradient(to bottom, #c3f1ef, #D1F6F1); */
+}
+
+.titleMusic {
+  text-align: center;
+  font-size: 25px;
+  font-family: "Nunito Sans", sans-serif;
+  color: #195556;
+  margin-top: 1em;
+}
+
+.boxArtists {
+  display: grid;
+  width: 90%;
+  margin-left: 5%;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 40px;
+  margin-top: 2em;
+}
+
+.cardArtist {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Ajusta el tamaño de los elementos al contenedor */
+  padding: 10px;
+  border-radius: 1em;
+  background: #113e3f;
+  font-weight: 2vw;
+  font-family: "Poppins", sans-serif;
+}
+
+.titleAlbum {
+  font-family: "Bungee", sans-serif;
+  display: grid;
+  place-content: center;
+  background: #fff;
+  border-radius: 1em;
+}
+
+.imgAlbumDedosSecos {
+  width: 100%;
+  height: 100%; /* Ajusta la altura para que ocupe todo el contenedor */
+  object-fit: cover; /* Mantiene la relación de aspecto y cubre completamente el contenedor */
+}
+
+.nameAlbum {
+  font-size: 18px;
+  display: grid;
+  place-content: center;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+}
+
+.btnListen {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1em;
+  margin-bottom: 0.3em;
+}
+
+.btnListen p {
+  display: grid;
+  place-content: center;
+  padding: 5px;
+  cursor: pointer;
+  color: #5fff50;
+  border-radius: 1em;
+}
+
+.btnListen p:hover {
+  color: #9eff90;
+}
+
+@media screen and (max-width: 800px) {
+  /* .nameAlbum {
+    font-size: 5vw;
+  } */
+
+  .titleMusic {
+    margin-top: 4em;
+  }
+}
+
+/* Open Music */
+
+.artistComponent {
+  width: 90%;
+  margin-left: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 2em;
+  gap: 10px;
+}
+
+.contentArt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.infoContent {
+  display: grid;
+  place-content: center;
+}
+
+.subInfoContent {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.titleArtist {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.numberInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.txtInfoNumbr {
+  font-weight: 300;
+  font-family: "Poppins", sans-serif;
+}
+
+.imgBoxAlbum {
+  display: grid;
+  place-content: center;
+}
+
+.redirectSpotify {
+  display: grid;
+  place-content: center;
+}
+
+.subBtnSpotify {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  padding: 10px;
+  background: #232323;
+  border-radius: 1em;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+}
+
+.subBtnSpotify p {
+  color: #fff;
+}
+
+.spotfyIcon {
+  color: green;
+}
+
+.arrowIcon {
+  color: #fff;
+}
+
+.backBtn {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: start;
+  width: 90%;
+  margin-left: 5%;
+}
+
+.subBackBtn {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .backBtn {
+    margin-top: 2em;
+  }
+}

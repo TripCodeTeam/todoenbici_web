@@ -1,0 +1,40 @@
+{
+    "productos": [
+        {
+            "id": 1,
+            "nombre": "Camiseta estampada",
+            "descripcion": "Camiseta con estampado de goku color blanca",
+            "image": "camisa-red-oso.png",
+            "precio": 20.90,
+            "stock": 50,
+            "categoria": "camiseta"
+        },
+        {
+            "id": 2,
+            "nombre": "Zapatos deportivos",
+            "descripcion": "Zapatos cómodos para actividades deportivas",
+            "image": "calzado-air.webp",
+            "precio": 39.99,
+            "stock": 30,
+            "categoria": "calzado"
+        },
+        {
+            "id": 3,
+            "nombre": "Portátil",
+            "descripcion": "Portátil ligero con procesador rápido",
+            "image": "portatil.webp",
+            "precio": 799.99,
+            "stock": 10,
+            "categoria": "electrónicos"
+        },
+        {
+            "id": 4,
+            "nombre": "Mochila",
+            "descripcion": "Mochila resistente al agua con varios compartimentos",
+            "image": "mochila.webp",
+            "precio": 29.99,
+            "stock": 20,
+            "categoria": "accesorios"
+        }
+    ]
+}

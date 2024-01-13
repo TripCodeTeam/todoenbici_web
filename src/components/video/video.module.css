@@ -1,0 +1,88 @@
+.info {
+  width: 90%;
+  margin-left: 5%;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 1em;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.videoContainer {
+  position: relative;
+  width: 90%;
+  margin-left: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+.infoBannerStreamers {
+  flex-basis: 400px;
+  flex-grow: 1;
+  display: grid;
+  place-content: center;
+}
+
+.boxOptiones {
+  display: grid;
+  place-content: center;
+}
+
+.centerOptions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.btnStream {
+  display: flex;
+  flex-direction: row;
+  background: #252525;
+  padding: 5px 10px 5px 10px;
+  border-radius: 1em;
+  cursor: pointer;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  gap: 5px;
+}
+
+.btnYoutube {
+  display: flex;
+  flex-direction: row;
+  background: #bababa;
+  padding: 5px 10px 5px 10px;
+  border-radius: 1em;
+  cursor: pointer;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  gap: 5px;
+}
+
+.btnYoutube p {
+  color: #000;
+}
+
+.btnStream p {
+  color: antiquewhite;
+}
+
+.imageIcon {
+  display: grid;
+  place-content: center;
+}
+
+.iconCirqelRed,
+.iconYoutube {
+  color: red;
+}
+
+@media screen and (max-width: 800px) {
+  .videoContainer {
+    width: 100%;
+    margin-left: 0%;
+  }
+}
