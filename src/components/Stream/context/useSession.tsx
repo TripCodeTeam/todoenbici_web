@@ -2,6 +2,7 @@
 
 interface UserTypes {
   username: "";
+  rol: "streamer" | "viewer";
   avatar: "";
   password: "";
   email: "";

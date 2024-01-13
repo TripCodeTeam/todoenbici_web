@@ -18,7 +18,7 @@ function Panel() {
   }, [user]);
 
   if (!loading) {
-    if (user.rol == "streamer") {
+    if (user ? user.rol == "streamer" : null) {
       return (
         <>
           <StreamAdmin />
