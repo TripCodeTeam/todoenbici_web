@@ -18,8 +18,5 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid signature" });
   }
 
-  // Haz algo con el evento de webhook
-  console.log("Received event: %s", req.body.type);
-
   return NextResponse.json({ received: true });
 }
