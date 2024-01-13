@@ -33,7 +33,7 @@ function AssetsStreams() {
       <h2 className={styles.historyTitle}>Historial de tus Live's</h2>
       <div className={styles.historyAssets}>
         {assets.map((asset) => (
-          <div className={styles.cardAssets}>
+          <div className={styles.cardAssets} key={asset.asset_id}>
             <MuxPlayer
               className={styles.videoContenedor}
               stream-type="on-demand"

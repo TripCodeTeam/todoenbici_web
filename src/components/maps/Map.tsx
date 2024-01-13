@@ -119,7 +119,7 @@ function MapComponent() {
     map.fitBounds(bounds);
 
     setMap(map);
-  }, []);
+  }, [markers]);
 
   const onUnmount = useCallback(function callback(_map: any) {
     setMap(null);
