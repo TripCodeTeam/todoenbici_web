@@ -24,9 +24,7 @@ import Typewriter from "typewriter-effect";
 
 import banner01 from "@/assets/services_img/banner01.jpg";
 import banner02 from "@/assets/services_img/banner02.jpg";
-import banner03 from "@/assets/services_img/banner03.jpg";
 import banner04 from "@/assets/services_img/banner04.jpg";
-import banner05 from "@/assets/services_img/banner05.jpg";
 import banner06 from "@/assets/services_img/banner06.jpg";
 import banner07 from "@/assets/services_img/banner07.jpg";
 import oskargo_logo from "@/assets/oscargo_logo.png";
