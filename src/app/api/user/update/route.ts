@@ -12,8 +12,15 @@ import { NextResponse } from "next/server";
 export async function PUT(req: Request) {
   try {
     // Desestructuramos los campos necesarios del cuerpo de la solicitud
-    const { id, email, username, rol, avatar }: ScalarUser =
-      await req.json();
+    const {
+      id,
+      email,
+      username,
+      rol,
+      avatar,
+      firstName,
+      lastName,
+    }: ScalarUser = await req.json();
 
     if (!id) {
       throw new Error("El ID del usuario no se proporcionó");
@@ -25,6 +32,8 @@ export async function PUT(req: Request) {
       username,
       avatar,
       rol,
+      firstName,
+      lastName,
     });
 
     // Si todo va bien, devolvemos una respuesta con el usuario actualizado en formato JSON
