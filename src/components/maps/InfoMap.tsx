@@ -1,18 +1,18 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { BsGeoFill } from "react-icons/bs";
-import { LAST_CORDENATES } from "@/graphql/mutations";
-import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import { TbWorldPin } from "react-icons/tb";
 import { FaCity } from "react-icons/fa6";
 import { HiOutlineStatusOnline } from "react-icons/hi";
-import { CiCalendarDate } from "react-icons/ci";
-
+import { GiPathDistance } from "react-icons/gi";
+import Image from "next/image";
 import imgBitacora from "@/assets/bitacora_img_preview.jpg";
 
 import styles from "./infoMap.module.css";
-import Image from "next/image";
+import { CiCalendarDate } from "react-icons/ci";
+import haversine from "../handlers/Haversine";
 
 interface cordenatesProps {
   id: string;
@@ -23,20 +23,34 @@ interface cordenatesProps {
   state: string;
 }
 
-interface Data {
-  lastCordenate: cordenatesProps;
-}
-
 function InfoMap() {
-  const { data } = useSuspenseQuery<Data>(LAST_CORDENATES);
+  const [location, setLocation] = useState<cordenatesProps | null>(null);
+  const [distance, setDistance] = useState<number | null>(null);
 
   useEffect(() => {
-    data;
-  }, [data]);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/api/coordinates");
+        // console.log(response);
+        setLocation(response.data);
 
-  const location: cordenatesProps = data.lastCordenate;
+        const fixedPoint = { lat: 3.440215257060241, lng: -76.54566298899921 };
 
-  console.log(data);
+        const distance = haversine(
+          fixedPoint.lat,
+          fixedPoint.lng,
+          response.data.latitude,
+          response.data.longitude
+        );
+
+        setDistance(distance);
+      } catch (error) {
+        console.error("Error al obtener las coordenadas:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className={styles.infoContainer}>
@@ -62,7 +76,7 @@ function InfoMap() {
           </div>
           <p>
             {!location ? "No disponible" : null}
-            {location ? location.latitude : null} {location ? " | " : null}{" "}
+            {location ? location.latitude : null} {location ? " | " : null}
             {location ? location.longitude : null}
           </p>
         </div>
@@ -73,15 +87,26 @@ function InfoMap() {
           </div>
           <p>{location ? location.state : null}</p>
         </div>
+
+        <div className={styles.boxProperty}>
+          <div className={styles.boxIcon}>
+            <GiPathDistance className={styles.icon} size={20} />
+          </div>
+          <p>
+            {distance
+              ? `Distancia: ${distance.toFixed(2)} km`
+              : "No disponible"}
+          </p>
+        </div>
       </div>
 
-      <h2 className={styles.titleInfoBitacora}>Bitacora</h2>
+      <h2 className={styles.titleInfoBitacora}>Bitácora</h2>
       <div className={styles.bitacoraContainer}>
         <div className={styles.cardBitacora}>
           <div className={styles.boxImage}>
             <Image
               className={styles.imgBitacora}
-              src={imgBitacora.src}
+              src={imgBitacora}
               width={10}
               height={10}
               alt="botacora"

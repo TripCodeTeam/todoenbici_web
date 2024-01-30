@@ -1,70 +1,63 @@
 "use client";
 
-import NavbarStream from "@/components/community/navbarStream";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import MuxPlayer from "@mux/mux-player-react";
 import styles from "./page.module.css";
-import Typewriter from "typewriter-effect";
+import axios from "axios";
+import { StreamData } from "@/types/User";
+import Footer from "@/components/footer/Footer";
+import Navbar from "@/components/navBars/NavBar";
+import PostCards from "@/components/community/posts/PostCards";
 
-import { FcCamcorderPro } from "react-icons/fc";
-import SigninFormStream from "../auth/signin/page";
-import { useAuth } from "@/components/Stream/context/useSession";
-import { useRouter } from "next/navigation";
-import CommunityInit from "@/components/community/inicio";
+import { FiPlus } from "react-icons/fi";
 
-function StreamingPage() {
-  const [endTextEntry, setEndTextEntry] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const { user } = useAuth();
-  const router = useRouter();
+export default function CommunityInit() {
+  const [latestTempPlaybackId, setLatestTempPlaybackId] =
+    useState<StreamData | null>(null);
+  const playerRef = useRef(null);
 
   useEffect(() => {
-    if (user) {
-      setLoading(false);
-    }
-  }, [user]);
+    const fetchLatestTempPlaybackId = async () => {
+      try {
+        const response = await axios.get("/api/tempPlaybackId/get");
+        setLatestTempPlaybackId(response.data);
+      } catch (error) {
+        console.error("Error fetching latest TempPlaybackId:", error);
+      }
+    };
 
-  if (loading) {
-    if (!user) {
-      return (
-        <>
-          <NavbarStream />
-          <main className={styles.bannerStreamer}>
-            <div className={styles.subMain}>
-              <video className={styles.video} autoPlay muted loop>
-                <source src="/fondo_stream.mp4" type="video/mp4" />
-              </video>
+    fetchLatestTempPlaybackId();
+  }, []);
+
+  return (
+    <>
+      <Navbar />
+      <div className={styles.createBoxPosts}>
+        <h3>Comparte tu viaje en Bici con la comunidad</h3>
+        <div className={styles.btnCreatePost}>
+          <button className={styles.btnCreate}>
+            <div className={styles.bixIconCreate}>
+              <FiPlus size={20} />
             </div>
-            <div className={styles.boxInfoBanner}>
-              {endTextEntry ? (
-                <SigninFormStream />
-              ) : (
-                <>
-                  <p className={styles.secondTextBanner}>
-                    <Typewriter
-                      onInit={(typewriter) => {
-                        typewriter
-                          .typeString(
-                            "<span>Acompañame por las carreteras</span>"
-                          )
-                          .start()
-                          .pauseFor(2000)
-                          .deleteAll()
-                          .callFunction(() => setEndTextEntry(true));
-                      }}
-                    />
-                  </p>
-                </>
-              )}
-            </div>
-          </main>
-        </>
-      );
-    }
-  } else {
-    if (user) {
-      return <CommunityInit />;
-    }
-  }
+            <p>Crear</p>
+          </button>
+        </div>
+      </div>
+      <section className={styles.layout}>
+        <div className={styles.sidebar}>
+          <div className={styles.LiveBox}>
+            <MuxPlayer
+              ref={playerRef}
+              streamType="live"
+              playbackId={latestTempPlaybackId?.playbackId || undefined}
+              primaryColor="#FFFFFF"
+              secondaryColor="#000000"
+            />
+          </div>
+        </div>
+        <PostCards />
+      </section>
+      <Footer />
+    </>
+  );
 }
-
-export default StreamingPage;

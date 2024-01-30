@@ -56,16 +56,6 @@ function RutaPage() {
                   <InfoMap />
                 </div>
               </div>
-              <div className={styles.btnMoreTravel} onClick={handleChangeChevron}>
-                <div className={styles.centerBtnMore}>
-                  <p>Mi anterior viaje</p>
-                  <div
-                    className={styles.chvronBox}
-                  >
-                    <IoChevronDown />
-                  </div>
-                </div>
-              </div>
             </>
           ) : null}
           {!mapLoaded && <p>Cargando mapa...</p>}

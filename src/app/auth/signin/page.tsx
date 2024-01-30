@@ -3,24 +3,21 @@
 import React, { FormEvent, useState } from "react";
 import { Toaster, toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/components/Stream/context/useSession";
 import styles from "./signin.module.css";
-
-import { LOGIN } from "@/graphql/mutations";
+import axios from "axios";
 
 import { LuHistory } from "react-icons/lu";
 import { AiFillMessage } from "react-icons/ai";
 import { PiMusicNotesFill } from "react-icons/pi";
 import { IoShareSocialSharp } from "react-icons/io5";
-import { useMutation } from "@apollo/client";
+import { useGlobalContext } from "@/components/context/ContextDashboard";
 
 function Signin() {
-  const { user, setAuthData } = useAuth();
-  const [ login ] = useMutation(LOGIN);
+  const { user, setUserData } = useGlobalContext();
   const route = useRouter();
 
   const [formData, setFormData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -34,11 +31,13 @@ function Signin() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     try {
-      const response = await login({ variables: formData });
-      console.log(response);
-      if (response.data && response.data.login) {
-        setAuthData(response.data.login);
+      const response = await axios.post("/api/user/signin", formData);
+
+      if (response.data) {
+        console.log()
+        setUserData(response.data);
         toast.success("Usuario encontrado");
         setTimeout(() => {
           route.push("/community");
@@ -72,10 +71,10 @@ function Signin() {
           <input
             className={styles.input}
             type="text"
-            name="username"
-            placeholder="Username"
+            name="email"
+            placeholder="Email"
             onChange={handleChange}
-            value={formData.username}
+            value={formData.email}
           />
           <input
             className={styles.input}

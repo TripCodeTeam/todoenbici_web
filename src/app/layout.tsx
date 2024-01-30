@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
-import { AuthProvider } from "@/components/Stream/context/useSession";
-import { ApolloWrapper } from "@/lib/ApolloWrapper";
-
+import { GlobalProvider } from "@/components/context/ContextDashboard";
 
 export const metadata: Metadata = {
   title: "TodoEnBici",
@@ -20,11 +18,9 @@ export default function RootLayout({
     <html lang="en">
       <SpeedInsights />
       <Analytics />
-      <body>
-        <ApolloWrapper>
-          <AuthProvider>{children}</AuthProvider>
-        </ApolloWrapper>
-      </body>
+      <GlobalProvider>
+        <body>{children}</body>
+      </GlobalProvider>
     </html>
   );
 }

@@ -5,37 +5,26 @@ import Navbar from "@/components/navBars/NavBar";
 import styles from "./page.module.css";
 import Image from "next/image";
 import { useMediaQuery } from "react-responsive";
+import LogrosComponent from "@/components/counts/Logros";
 
-import {
-  FaYoutube,
-  FaFacebook,
-  FaInstagram,
-  FaTiktok,
-  FaRoad,
-  FaHandsHelping,
-} from "react-icons/fa";
+import { FaYoutube, FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-
-import { MdDirectionsBike } from "react-icons/md";
 
 import pictureCEO from "@/assets/perfil_CEO.jpg";
 import Footer from "@/components/footer/Footer";
 import Typewriter from "typewriter-effect";
 
-import banner01 from "@/assets/services_img/banner01.jpg";
 import banner02 from "@/assets/services_img/banner02.jpg";
-import banner04 from "@/assets/services_img/banner04.jpg";
 import banner06 from "@/assets/services_img/banner06.jpg";
 import banner07 from "@/assets/services_img/banner07.jpg";
-import oskargo_logo from "@/assets/oscargo_logo.png";
 import tripcode_logo from "@/assets/tripcode_logo.png";
-import juliaca_logo from "@/assets/juliaca_logo.png";
 import VideoComponent from "@/components/video/VideoComponent";
 import AutoSliderLeft from "@/components/slider/autoSliderLeft";
 
 function Home() {
   const router = useRouter();
   const isBigScreen = useMediaQuery({ query: "(min-width: 900px)" });
+
   return (
     <>
       <Navbar />
@@ -71,28 +60,7 @@ function Home() {
         </div>
       </main>
 
-      <main className={styles.biografic}>
-        <section className={styles.informationBox}>
-          <div className={styles.infoCard}>
-            <div className={styles.infoIcon}>
-              <MdDirectionsBike className={styles.iconRoad} size={70} />
-            </div>
-            <p className={styles.textInfoCard}>10.000 km recorridos </p>
-          </div>
-          <div className={styles.infoCard}>
-            <div className={styles.infoIcon}>
-              <FaRoad className={styles.iconCity} size={70} />
-            </div>
-            <p className={styles.textInfoCard}>8 Millones de pedaleadas</p>
-          </div>
-          <div className={styles.infoCard}>
-            <div className={styles.infoIcon}>
-              <FaHandsHelping className={styles.iconHelping} size={70} />
-            </div>
-            <p className={styles.textInfoCard}>67 puntos de apoyo</p>
-          </div>
-        </section>
-      </main>
+      <LogrosComponent />
 
       <main className={styles.aboutMain}>
         <div className={styles.boxImage}>
@@ -161,14 +129,14 @@ function Home() {
           <h1 className={styles.services_title}>Explora y disfuta</h1>
         ) : null}
         <div className={styles.view001}>
-          <div
+          {/* <div
             className={styles.boxServices}
             onClick={() => {
               router.push("/shop");
             }}
           >
             <Image className={styles.iconoBanner} src={banner01} alt="bn1" />
-          </div>
+          </div> */}
 
           <div
             className={styles.boxServices}
@@ -182,16 +150,7 @@ function Home() {
           <div
             className={styles.boxServices}
             onClick={() => {
-              router.push("/shop");
-            }}
-          >
-            <Image className={styles.iconoBanner} src={banner04} alt="bn1" />
-          </div>
-
-          <div
-            className={styles.boxServices}
-            onClick={() => {
-              router.push("/cicloviajero");
+              router.push("/vitacora");
             }}
           >
             <Image className={styles.iconoBanner} src={banner06} alt="bn1" />
@@ -206,46 +165,22 @@ function Home() {
             <Image className={styles.iconoBanner} src={banner07} alt="bn1" />
           </div>
         </div>
-
-        <p className={styles.textPatro}>Colaboradores</p>
-        <div className={styles.cubeLogos}>
-          <div className={styles.centerLogos}>
-            <div className={styles.imgLogos}>
-              <Image
-                className={styles.iconLogo}
-                src={oskargo_logo}
-                alt="oskargo"
-              />
-            </div>
-            <div className={styles.imgLogos}>
-              <Image
-                className={styles.iconLogo}
-                src={tripcode_logo}
-                alt="oskargo"
-              />
-            </div>
-          </div>
-        </div>
       </main>
 
       <section className={styles.containerVideo}>
         <VideoComponent />
       </section>
 
-      <main className={styles.boxPatrocinadores}>
-        <p className={styles.textPatro}>Patrocinadores</p>
+      <div className={styles.collab}>
+        <p className={styles.textPatro}>Colaboradores</p>
         <div className={styles.cubeLogos}>
-          <div className={styles.centerLogos}>
-            <div className={styles.imgLogos}>
-              <Image
-                className={styles.iconLogo}
-                src={juliaca_logo}
-                alt="oskargo"
-              />
-            </div>
-          </div>
+          <Image
+            className={styles.iconLogo}
+            src={tripcode_logo}
+            alt="oskargo"
+          />
         </div>
-      </main>
+      </div>
 
       <div className={styles.bannerInstagram}>
         <AutoSliderLeft />
@@ -257,7 +192,7 @@ function Home() {
             }
           >
             <div className={styles.boxIconRed}>
-              <FaInstagram size={40}/>
+              <FaInstagram size={40} />
             </div>
             <p className={styles.textInstagramBtn}>Visita mi instagram</p>
           </div>

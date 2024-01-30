@@ -57,3 +57,11 @@
   display: grid;
   place-content: center;
 }
+
+
+@media screen and (max-width: 900px) {
+  .mapBox {
+    width: 100%;
+    margin: 0;
+  }
+}

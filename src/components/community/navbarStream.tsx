@@ -5,6 +5,7 @@ import { useAuth } from "../Stream/context/useSession";
 import Link from "next/link";
 import styles from "./styles/navbar.module.css";
 import { useRouter } from "next/navigation";
+import Avatar from "react-avatar";
 
 function NavbarStream() {
   const { user } = useAuth();
@@ -18,9 +19,16 @@ function NavbarStream() {
   return (
     <nav className={styles.nav}>
       <div className={styles.subPartNav}>
-        <p>
-          Comunidad
-        </p>
+        <div className={styles.centerProfile}>
+          <div className={styles.boxAvatarUser}>
+            <Avatar
+              src="https://github.com/foultrip.png"
+              round={true}
+              size="30"
+            />
+          </div>
+          <p>{user?.username}</p>
+        </div>
       </div>
       <div className={styles.subPartNavOpt}>
         <div
@@ -30,14 +38,14 @@ function NavbarStream() {
           historial
         </div>
 
-        {/* {user?.stream[0].rol == "streamer" ? (
+        {user?.rol == "streamer" ? (
           <div
             className={styles.btnNav}
             onClick={() => router.push("/stream/panel")}
           >
             Panel
           </div>
-        ) : null} */}
+        ) : null}
 
         {!user ? (
           <div
@@ -47,16 +55,11 @@ function NavbarStream() {
             cuenta
           </div>
         ) : null}
-
-        <div className={styles.btnNav}>
-          <p>{user?.username}</p>
-        </div>
-        {user ?           <div
-            className={styles.btnNav}
-            onClick={handleLogout}
-          >
+        {user ? (
+          <div className={styles.btnNav} onClick={handleLogout}>
             Salir
-          </div> : null}
+          </div>
+        ) : null}
       </div>
     </nav>
   );

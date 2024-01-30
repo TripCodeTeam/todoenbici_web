@@ -1,0 +1,21 @@
+meta {
+  name: Update User [id]
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{Backend_url}}/api/user/update
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "d3c159ce-009f-4ea4-a473-d5fe1db3b5c7",
+    "username": "tripcode",
+    "email": "davidvasquezmahecha@gmail.com",
+    "rol": "viewer",
+    "avatar": "https://github.com/foultrip.png"
+  }
+}

@@ -1,0 +1,24 @@
+meta {
+  name: Create Post
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{Backend_url}}/api/post/create
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "content": "Hoy, nos encontramos en medio de la majestuosidad de la naturaleza, pedaleando y explorando. Cada giro de la rueda nos lleva más cerca de nuestro destino, pero nos recuerda que el viaje es lo que realmente importa. ¡A seguir rodando!",
+    "images": [
+      "https://estaticos-cdn.prensaiberica.es/clip/87205e8e-38ce-45d1-97f2-e16930520a04_16-9-aspect-ratio_default_0.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1X87_Qfr2_Ad-cyS4vPvHREOnt8JRAWEfmr-zXOu6Zak0cMQpC9RKhkicQ5HpFxLBa7w&usqp=CAU"
+    ],
+    "video": "",
+    "location": "Colombia",
+    "userId": "77343862-3bd7-42fd-9b40-fd479c11327b"
+  }
+}

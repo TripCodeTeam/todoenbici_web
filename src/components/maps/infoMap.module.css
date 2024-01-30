@@ -1,3 +1,8 @@
+.infoContainer {
+  width: 90%;
+  margin-left: 5%;
+}
+
 .boxProperty {
   display: flex;
   flex-direction: row;
@@ -34,13 +39,15 @@
 
 .bitacoraContainer {
   background: #eaeaea;
-  height: 34vh;
+  height: 30vh;
   overflow: scroll; 
   padding: 10px;
   border-radius: 1em;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 3em;
+  margin-top: 1em;
 }
 
 .cardBitacora {
@@ -103,4 +110,11 @@
 .dateIcon {
   display: grid;
   place-content: center;
+}
+
+
+@media screen and (max-width: 800px) {
+  .bitacoraContainer {
+    height: 51vh;
+  }
 }

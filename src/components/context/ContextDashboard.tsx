@@ -9,25 +9,26 @@ import React, {
 } from "react";
 import Cookies from "js-cookie";
 
+import { AuthUser } from "@/types/User";
 
-interface User {
-  id: string;
-  username: string;
-  email: string;
-  avatar: string;
-  rol: String;
-  token: string;
-}
+// interface User {
+//   id: string;
+//   username: string;
+//   email: string;
+//   avatar: string;
+//   rol: String;
+//   token: string;
+// }
 
 interface GlobalContextType {
-  user: User | null;
-  setUserData: (userData: User) => void;
+  user: AuthUser | null;
+  setUserData: (userData: AuthUser) => void;
 }
 
 const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 
 export function GlobalProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<AuthUser | null>(null);
 
   useEffect(() => {
     const infoSession = Cookies.get("userData");
@@ -36,7 +37,7 @@ export function GlobalProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const setUserData = (userData: User) => {
+  const setUserData = (userData: AuthUser) => {
     setUser(userData);
     Cookies.set("userData", JSON.stringify(userData));
   };

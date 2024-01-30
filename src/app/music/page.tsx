@@ -59,7 +59,9 @@ function Music() {
         {selectArt != 0 ? (
           <div className={styles.backBtn}>
             <div className={styles.subBackBtn} onClick={() => setSelectArt(0)}>
-              <IoIosArrowRoundBack />
+              <div className={styles.boxArrowLeft}>
+                <IoIosArrowRoundBack size={25} />
+              </div>
               <p>Volver</p>
             </div>
           </div>
@@ -98,9 +100,13 @@ function Music() {
               </div>
               <div className={styles.redirectSpotify}>
                 <div className={styles.subBtnSpotify}>
-                  <GrSpotify className={styles.spotfyIcon} />
+                  <div className={styles.boxArrowLeft}>
+                    <GrSpotify className={styles.spotfyIcon} />
+                  </div>
                   <p>Spotify</p>
-                  <IoIosArrowRoundForward className={styles.arrowIcon} />
+                  <div className={styles.boxArrowLeft}>
+                    <IoIosArrowRoundForward className={styles.arrowIcon} />
+                  </div>
                 </div>
               </div>
             </div>
@@ -143,9 +149,13 @@ function Music() {
               </div>
               <div className={styles.redirectSpotify}>
                 <div className={styles.subBtnSpotify}>
-                  <GrSpotify className={styles.spotfyIcon} />
+                  <div className={styles.boxIconSpotify}>
+                    <GrSpotify className={styles.spotfyIcon} />
+                  </div>
                   <p>Spotify</p>
-                  <IoIosArrowRoundForward className={styles.arrowIcon} />
+                  {/* <div className={styles.boxArrowLeft}>
+                    <IoIosArrowRoundForward size={25} className={styles.arrowIcon} />
+                  </div> */}
                 </div>
               </div>
             </div>

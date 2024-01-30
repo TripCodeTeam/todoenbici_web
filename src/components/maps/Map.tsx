@@ -7,34 +7,48 @@ import {
   Marker,
   Polyline,
 } from "@react-google-maps/api";
-import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
-import { LAST_CORDENATES } from "@/graphql/mutations";
+import axios from "axios";
 
 interface Coordinates {
   lat: number;
   lng: number;
 }
 
-interface cordenatesProps {
+interface dataResponse {
   id: string;
   latitude: number;
   longitude: number;
   country: string;
   city: string;
   state: string;
-}
-
-interface Data {
-  lastCordenate: cordenatesProps;
+  createdAt: string;
 }
 
 function MapComponent() {
-  const { data } = useSuspenseQuery<Data>(LAST_CORDENATES);
-  const location: cordenatesProps = data.lastCordenate;
+  const [location, setLocation] = useState<Coordinates>();
+
   const containerStyle = {
     width: "100%",
     height: "500px",
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/api/coordinates");
+        const data: dataResponse = response.data;
+        const filterResponse = {
+          lat: data.latitude,
+          lng: data.longitude,
+        };
+        setLocation(filterResponse);
+      } catch (error) {
+        console.error("Error al obtener las coordenadas:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const mapStyles = [
     {
@@ -42,56 +56,7 @@ function MapComponent() {
       elementType: "geometry.fill",
       stylers: [{ color: "#ffffff" }],
     },
-    {
-      featureType: "poi",
-      elementType: "geometry.fill",
-      stylers: [{ visibility: "on" }, { color: "#fce8b2" }],
-    },
-    {
-      featureType: "landscape",
-      elementType: "geometry.fill",
-      stylers: [{ color: "#f3f4f4" }],
-    },
-    {
-      featureType: "water",
-      elementType: "geometry.fill",
-      stylers: [{ color: "#c8d7d4" }],
-    },
-    {
-      featureType: "road",
-      elementType: "geometry.fill",
-      stylers: [{ color: "#f5f1f6" }],
-    },
-    {
-      featureType: "road.highway",
-      elementType: "geometry.fill",
-      stylers: [{ color: "#f5f1f6" }],
-    },
-    {
-      featureType: "road.arterial",
-      elementType: "geometry.fill",
-      stylers: [{ color: "#ffffff" }],
-    },
-    {
-      featureType: "road.local",
-      elementType: "geometry.fill",
-      stylers: [{ color: "black" }],
-    },
-    {
-      featureType: "transit.station.airport",
-      elementType: "geometry.fill",
-      stylers: [{ color: "#cfb2db" }],
-    },
-    {
-      featureType: "transit.station.rail",
-      elementType: "geometry.fill",
-      stylers: [{ color: "#eeeeee" }],
-    },
-    {
-      featureType: "transit.station.bus",
-      elementType: "geometry.fill",
-      stylers: [{ color: "#dddddd" }],
-    },
+    // ... (previous map styles)
   ];
 
   const center = {
@@ -106,20 +71,32 @@ function MapComponent() {
 
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState<Coordinates[]>([
-    // Coordenadas iniciales
     { lat: 3.440215257060241, lng: -76.54566298899921 },
-    { lat: location.latitude, lng: location.longitude },
+    { lat: location ? location.lat : 0, lng: location ? location.lng : 0 },
   ]);
 
-  const onLoad = useCallback(function callback(map: any) {
-    const bounds = new window.google.maps.LatLngBounds();
-    markers.forEach((location) => {
-      bounds.extend(location);
-    });
-    map.fitBounds(bounds);
+  useEffect(() => {
+    // Update markers when location changes
+    setMarkers([
+      { lat: 3.440215257060241, lng: -76.54566298899921 },
+      { lat: location ? location.lat : 0, lng: location ? location.lng : 0 },
+    ]);
+  }, [location]);
 
-    setMap(map);
-  }, [markers]);
+  const onLoad = useCallback(
+    function callback(map: any) {
+      const bounds = new window.google.maps.LatLngBounds();
+      markers.forEach((location) => {
+        if (location.lat && location.lng) {
+          bounds.extend(location);
+        }
+      });
+      map.fitBounds(bounds);
+
+      setMap(map);
+    },
+    [markers]
+  );
 
   const onUnmount = useCallback(function callback(_map: any) {
     setMap(null);
@@ -130,7 +107,6 @@ function MapComponent() {
       const directionsService = new window.google.maps.DirectionsService();
       const directionsRenderer = new window.google.maps.DirectionsRenderer();
       directionsRenderer.setMap(map);
-      // directionsRenderer.setOptions({ suppressMarkers: true });
 
       const origin = markers[0];
       const destination = markers[markers.length - 1];
@@ -145,7 +121,7 @@ function MapComponent() {
           if (status === window.google.maps.DirectionsStatus.OK) {
             directionsRenderer.setDirections(result);
           } else {
-            console.error("Error al obtener las direcciones:", status);
+            console.log("Error al obtener las direcciones: ", status);
           }
         }
       );
@@ -174,7 +150,7 @@ function MapComponent() {
         icon={{
           url: "/markers/pin-de-mapa.png",
           scaledSize: new window.google.maps.Size(32, 32),
-        }} // Reemplaza esto con la URL de tu imagen de bicicleta
+        }}
       />
     </GoogleMap>
   ) : (

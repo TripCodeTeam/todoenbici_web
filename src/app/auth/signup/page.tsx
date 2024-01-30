@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 
 interface UserTypes {
   username: string;
+  firstName: string,
+  lastName: string,
   avatar: string;
   password: string;
   email: string;
@@ -18,6 +20,8 @@ function Signup() {
 
   const [data, setData] = useState<UserTypes>({
     username: "",
+    firstName: "",
+    lastName: "",
     avatar: "",
     password: "",
     email: "",
@@ -61,6 +65,20 @@ function Signup() {
           type="text"
           name="username"
           placeholder="Username"
+          onChange={handleChange}
+          value={data.username}
+        />
+        <input
+          type="text"
+          name="firstName"
+          placeholder="Nombre"
+          onChange={handleChange}
+          value={data.username}
+        />
+        <input
+          type="text"
+          name="lastName"
+          placeholder="Apellidos"
           onChange={handleChange}
           value={data.username}
         />

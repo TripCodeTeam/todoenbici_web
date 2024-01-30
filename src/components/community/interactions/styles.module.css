@@ -1,0 +1,23 @@
+.boxInteraction {
+    padding-left: 35px;
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.subBoxInteraction {
+    display: flex;
+    flex-direction: row;
+}
+
+.countInteraction {
+    display: grid;
+    place-content: center;
+}
+
+@media screen and (max-width: 900px) {
+    .boxInteraction {
+        padding-left: 0;
+    }
+}

@@ -1,0 +1,17 @@
+meta {
+  name: Create PlayBackId
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{Backend_url}}/api/templayback/create
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "playbackId": "DHyMj3bGYdTVe5fuyM00jZ9L67CTnoGyIuY6WrvDjSK8"
+  }
+}

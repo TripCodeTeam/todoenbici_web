@@ -7,6 +7,14 @@
   /* position: fixed; */
   width: 100%;
   z-index: 1;
+  transition: background-color 0.3s;
+  position: fixed;
+  top: 0; /* Lo fija en la parte superior */
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
 }
 
 .subPartNav {
@@ -16,16 +24,34 @@
 }
 
 .subPartNavOpt {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .btnNav {
   padding: 5px 10px 5px 10px;
   cursor: pointer;
+  font-weight: 500;
 }
 
 .btnNav:hover {
   background: #ffffff;
   /* border-radius: 1em; */
+}
+
+.centerProfile {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.centerProfile p {
+  display: grid;
+  place-content: center;
+  font-weight: 500;
+}
+
+.boxAvatarUser {
+  display: grid;
+  place-content: center;
 }

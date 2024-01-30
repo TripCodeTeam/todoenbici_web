@@ -1,17 +1,50 @@
 .footer {
-    width: 100%;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    font-family: "Poppins", sans-serif;
-    margin-top: 1em;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 10px;
 }
 
-.footer h2 {
-    text-align: center;
+.firstCard {
+  display: grid;
+  place-content: center;
+  font-weight: 200;
+  text-align: center;
 }
 
-.footer p {
-    text-align: center;
+.secondCard {
+  display: grid;
+  place-content: center;
+}
+
+.centerIcons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.iconFooterFc,
+.iconFooterIg,
+.iconFooterTk {
+  color: gray;
+  cursor: pointer;
+}
+
+.iconFooterFc:hover,
+.iconFooterIg:hover,
+.iconFooterTk:hover {
+  color: #686868;
+}
+
+@media screen and (max-width: 800px) {
+  .firstCard {
+    flex-wrap: 400px;
+    flex-grow: 1;
+  }
+
+  .secondCard {
+    flex-wrap: 400px;
+    flex-grow: 1;
+  }
 }

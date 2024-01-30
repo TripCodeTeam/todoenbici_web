@@ -43,9 +43,9 @@
   place-content: center;
 }
 
-.Main02 {
-  min-height: 100vh;
-}
+/* .Main02 {
+  min-height: 100dvh;
+} */
 
 .iconMarker {
   width: 100%;
@@ -76,11 +76,19 @@
   flex-basis: 200px;
   flex-grow: 1;
   cursor: pointer;
+  view-timeline-name: --image;
+  view-timeline-axis: block;
+
+  animation-timeline: --image;
+  animation-name: show;
+
+  animation-range: entry 20% cover 30%;
+  animation-fill-mode: both;
 }
 
 .boxServices:hover {
   scale: 1.03;
-  transition: scale .5s;
+  transition: scale 0.5s;
 }
 
 .iconoBanner {
@@ -185,23 +193,30 @@
   width: 90%;
   margin-left: 5%;
   margin-bottom: 3em;
-  display: grid;
-  place-content: center;
+  /* display: grid;
+  place-content: center; */
 }
 
 .informationBox {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   gap: 30px;
 }
 
 .infoCard {
-  flex-basis: 1000;
+  flex-basis: 400;
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  place-content: center;
   gap: 10px;
   padding-top: 2em;
+}
+
+.centerInfoCard {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 }
 
 .infoIcon {
@@ -210,9 +225,9 @@
 }
 
 .textInfoCard {
+  display: grid;
+  place-content: center;
   text-align: center;
-  font-size: 1.3vw;
-  font-family: "Poppins", sans-serif;
 }
 
 @media screen and (max-width: 900px) {
@@ -301,7 +316,7 @@
 .iconYoutube:hover {
   color: red;
   scale: 1.03;
-  transition: scale .3s;
+  transition: scale 0.3s;
 }
 
 .iconFacebook {
@@ -312,7 +327,7 @@
 .iconFacebook:hover {
   color: #6565ff;
   scale: 1.03;
-  transition: scale .3s;
+  transition: scale 0.3s;
 }
 
 .iconInstagram {
@@ -323,7 +338,7 @@
 .iconInstagram:hover {
   color: #cc6a6a;
   scale: 1.03;
-  transition: scale .3s;
+  transition: scale 0.3s;
 }
 
 .iconTiktok {
@@ -334,13 +349,17 @@
 .iconTiktok:hover {
   color: #000;
   scale: 1.03;
-  transition: scale .3s;
+  transition: scale 0.3s;
+}
+
+.collab {
+  margin-top: 3em;
+  margin-bottom: 5em;
 }
 
 .textPatro {
   width: 100%;
   text-align: center;
-  margin-top: 3em;
   font-size: 30px;
   font-family: "Poppins", sans-serif;
 }
@@ -368,7 +387,7 @@
 
 .realBtnYtb:hover {
   scale: 1.03;
-  transition: scale .3s;
+  transition: scale 0.3s;
 }
 
 .realBtnYtb p {
@@ -381,29 +400,21 @@
 }
 
 .cubeLogos {
-  display: grid;
-  place-content: center;
-}
-
-.centerLogos {
   display: flex;
-  flex-direction: row;
-}
-
-.imgLogos {
-  display: grid;
-  place-content: center;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 1em;
 }
 
 .iconLogo {
-  width: 300px;
+  width: 400px;
   height: auto;
 }
 
 .iconLogo:hover {
   scale: 1.03;
   cursor: pointer;
-  transition: scale .3s;
+  transition: scale 0.3s;
 }
 
 .services_title {
@@ -430,7 +441,7 @@
   }
 
   .iconLogo {
-    width: 100%;
+    width: 60%;
     height: auto;
   }
 }
@@ -442,8 +453,9 @@
   animation-timeline: --image;
   animation-name: show;
   animation-range: entry 20% cover 30%;
-  animation-fill-mode: both;
-  justify-content: space-between; */
+  animation-fill-mode: both; */
+  display: grid;
+  place-content: center;
 }
 
 .view001 {
@@ -469,6 +481,14 @@
 .containerVideo {
   display: grid;
   place-content: center;
+  view-timeline-name: --image;
+  view-timeline-axis: block;
+
+  animation-timeline: --image;
+  animation-name: show;
+
+  animation-range: entry 20% cover 30%;
+  animation-fill-mode: both;
 }
 
 @media screen and (max-width: 700px) {
@@ -508,15 +528,15 @@
   cursor: pointer;
   color: #f1f1f1;
   background: #dd4141;
-  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 .centerBtnInstagram:hover {
   scale: 1.02;
-  transition: scale .3s;
+  transition: scale 0.3s;
 }
 
 .textInstagramBtn {
   font-size: 30px;
-  font-family: 'Pacifico', cursive;
+  font-family: "Pacifico", cursive;
 }

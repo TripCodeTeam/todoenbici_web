@@ -1,28 +1,13 @@
-"use client";
-
 import MuxPlayer from "@mux/mux-player-react";
 import React, { useEffect, useState } from "react";
 import styles from "./stream.module.css";
 import axios from "axios";
 import NavbarStream from "../community/navbarStream";
-import {
-  CREATE_TEMP_PLAYBACK_ID,
-  DELETE_TEMP_PLAYBACK_ID,
-} from "@/graphql/mutations";
-import { useMutation } from "@apollo/client";
-
 import { IoCopyOutline } from "react-icons/io5";
-
-interface datesStream {
-  live_stream_id: string;
-  stream_key: string;
-  playbackId: string;
-}
+import { StreamData } from "@/types/User";
 
 function StreamAdmin() {
-  const [streamData, setStreamData] = useState<datesStream | null>(null);
-  const [createTempPlaybackId] = useMutation(CREATE_TEMP_PLAYBACK_ID);
-  const [deleteTempPlaybackId] = useMutation(DELETE_TEMP_PLAYBACK_ID);
+  const [streamData, setStreamData] = useState<StreamData | null>(null);
 
   useEffect(() => {
     const savedStreamData = localStorage.getItem("streamData");
@@ -31,7 +16,7 @@ function StreamAdmin() {
     }
   }, []);
 
-  async function FetchNewPlayBackId() {
+  async function fetchNewPlayBackId() {
     if (streamData) {
       alert(
         "Ya existe un stream. Por favor, elimina el stream actual antes de crear uno nuevo."
@@ -39,23 +24,24 @@ function StreamAdmin() {
       return;
     }
 
-    const response = await axios.post("/api/stream");
-    const data = response.data;
-    setStreamData(data);
-
     try {
-      await createTempPlaybackId({
-        variables: { playbackId: data.playbackId },
+      const response = await axios.post("/api/stream");
+      const data = response.data;
+      setStreamData(data);
+
+      // Guardar el nuevo stream en el localStorage
+      localStorage.setItem("streamData", JSON.stringify(data));
+
+      // Llamada al endpoint para crear el TempPlaybackId
+      await axios.post("/api/templayback/create", {
+        playbackId: data.playbackId,
       });
     } catch (error) {
-      console.log("Error al guardar el playbackId temporalmente:", error);
+      console.log("Error al obtener un nuevo playbackId:", error);
     }
-
-    localStorage.setItem("streamData", JSON.stringify(data));
   }
 
   async function deleteStream() {
-    // Recupera los datos del stream del localStorage
     const storedDataString = localStorage.getItem("streamData");
     let storedData = null;
 
@@ -65,14 +51,16 @@ function StreamAdmin() {
 
     if (storedData) {
       setStreamData(null);
+
       try {
-        // Usa el playbackId del stream almacenado para eliminar el TempPlaybackId
-        await deleteTempPlaybackId({
-          variables: { playbackId: storedData.playbackId },
+        // Llamada al endpoint para eliminar el TempPlaybackId
+        await axios.delete("/api/templayback/remove", {
+          data: { playbackId: storedData.playbackId },
         });
       } catch (error) {
         console.log("Error al eliminar el playbackId temporal:", error);
       }
+
       localStorage.removeItem("streamData");
     } else {
       console.log("No se encontró ningún stream en el localStorage.");
@@ -84,7 +72,6 @@ function StreamAdmin() {
 
   return (
     <>
-      <NavbarStream />
       <div className={styles.prevStream}>
         {streamData && (
           <MuxPlayer
@@ -101,7 +88,7 @@ function StreamAdmin() {
               {streamData?.live_stream_id ? (
                 <button onClick={deleteStream}>Eliminar Stream</button>
               ) : (
-                <button onClick={FetchNewPlayBackId}>Crear Stream</button>
+                <button onClick={fetchNewPlayBackId}>Crear Stream</button>
               )}
             </div>
             {streamData ? (
@@ -109,9 +96,6 @@ function StreamAdmin() {
                 <div className={styles.opcCopyDetails}>
                   <p className={styles.titleInfo}>Live Stream ID</p>
                   <p className={styles.infoText}>{streamData.live_stream_id}</p>
-                  {/* <div className={styles.boxIconCopy}>
-                    <IoCopyOutline />
-                  </div> */}
                 </div>
                 <div className={styles.opcCopyDetails}>
                   <p className={styles.titleInfo}>Stream Key</p>

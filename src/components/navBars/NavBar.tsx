@@ -4,14 +4,18 @@ import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./styles.module.css";
 import { useMediaQuery } from "react-responsive";
+import Avatar from "react-avatar";
 
 import iconLogo from "@/assets/logo_page.png";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useGlobalContext } from "../context/ContextDashboard";
+
 import { AiOutlineMenu, AiFillHome } from "react-icons/ai";
 import { IoMdCloseCircle, IoIosMusicalNotes } from "react-icons/io";
 import { FaMap, FaBicycle, FaBed } from "react-icons/fa";
-import { MdOutlineLocalGroceryStore } from "react-icons/md";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { PiUsersThreeFill } from "react-icons/pi";
+import { FaUser } from "react-icons/fa";
 
 // interface NavBarProps {
 //   openModal: (content: React.ReactNode) => void;
@@ -21,6 +25,7 @@ function Navbar() {
   const router = useRouter();
   const responsive = useMediaQuery({ query: "(min-width: 900px)" });
   const [openDropDown, setOpenDropDown] = useState(false);
+  const { user } = useGlobalContext();
 
   const handlerDropDown = () => {
     setOpenDropDown(!openDropDown);
@@ -40,7 +45,7 @@ function Navbar() {
         {responsive ? (
           <div className={styles.account}>
             <div className={styles.subAccount}>
-              <Link href={"/blog"} className={styles.login}>
+              <Link href={"/guia"} className={styles.login}>
                 Equipaje
               </Link>
             </div>
@@ -66,6 +71,26 @@ function Navbar() {
                 Comunidad
               </Link>
             </div>
+
+            {user ? (
+              <>
+                <div
+                  className={styles.supaBoxAccount}
+                  onClick={() => router.push(`/profile/${user.username}`)}
+                >
+                  <div className={styles.boxAccount}>
+                    <Avatar
+                      src={"https://github.com/foultrip.png"}
+                      round={true}
+                      size="20"
+                    />
+                  </div>
+                  <p className={styles.username}>{user?.username}</p>
+                </div>
+              </>
+            ) : (
+              <FaUser />
+            )}
           </div>
         ) : (
           <div
@@ -81,7 +106,26 @@ function Navbar() {
             {openDropDown ? (
               <ul className={styles.dropdown}>
                 <div className={styles.boxBtnClose}>
-                  <p>Todo en bici</p>
+                  <div className={styles.boxAccount}>
+                    <div className={styles.IconUser}>
+                      {user ? (
+                        <>
+                          <div className={styles.supaBoxAccountResponsive}>
+                            <div className={styles.boxAccount}>
+                              <Avatar
+                                src={"https://github.com/foultrip.png"}
+                                round={true}
+                                size="20"
+                              />
+                            </div>
+                            <p className={styles.username}>{user?.username}</p>
+                          </div>
+                        </>
+                      ) : (
+                        <FaUser />
+                      )}
+                    </div>
+                  </div>
                   <IoMdCloseCircle
                     size={25}
                     onClick={handlerDropDown}
@@ -120,7 +164,7 @@ function Navbar() {
 
                 <li
                   className={styles.dropdown_list}
-                  onClick={() => router.push("/ruta")}
+                  onClick={() => router.push("/guia")}
                 >
                   <div className={styles.dropdown_link}>
                     <FaBicycle />
@@ -137,6 +181,16 @@ function Navbar() {
                     <span className={styles.dropdown_span}>
                       Casa del cicloviajero
                     </span>
+                  </div>
+                </li>
+
+                <li
+                  className={styles.dropdown_list}
+                  onClick={() => router.push("/ruta")}
+                >
+                  <div className={styles.dropdown_link}>
+                    <PiUsersThreeFill />
+                    <span className={styles.dropdown_span}>Comunidad</span>
                   </div>
                 </li>
               </ul>

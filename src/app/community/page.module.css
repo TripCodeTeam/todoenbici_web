@@ -1,49 +1,116 @@
-.bannerStreamer {
-  background: transparent;
-  min-height: 100vh;
-  position: relative;
+.boxLive {
+  display: grid;
+  place-content: center;
+  margin-top: 3em;
+}
+
+.boxLiveStream {
+  width: 700px;
+  height: auto;
+  object-fit: cover;
+}
+
+.warninNoLive {
+  display: grid;
+  place-content: center;
+  margin-top: 1em;
+}
+
+.centerWarning {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.textWarn {
   display: grid;
   place-content: center;
 }
 
-.subMain {
+.boxIconSignal {
+  display: grid;
+  place-content: center;
+}
+
+.iconSignal {
+  color: red;
+}
+
+.createBoxPosts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 90%;
   margin-left: 5%;
-  display: flex;
-  flex-direction: row;
-}
-
-.video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  filter: brightness(0.2);
-}
-
-.boxInfoBanner {
-  color: aliceblue;
-}
-
-.boxIconLive {
-  display: grid;
-  place-content: center;
-}
-
-.secondTextBanner {
-  width: 100%;
-  display: grid;
-  place-content: center;
-  font-family: "Poppins", sans-serif;
-  font-size: 3vw;
-  font-weight: 400;
-}
-
-.centerBoxInfoBanner {
-  display: flex;
-  flex-direction: row;
   gap: 10px;
+}
+
+.btnCreatePost {
+  display: grid;
+  place-content: center;
+}
+
+.btnCreate {
+  display: flex;
+  flex-direction: row;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: none;
+  background: rgb(237, 64, 64);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.bixIconCreate {
+  display: grid;
+  place-content: center;
+}
+
+.layout {
+  margin-top: 3em;
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: 2fr 0.5fr;
+  gap: 10px;
+  grid-template-areas: "body sidebar";
+}
+
+.sidebar {
+  /* min-height: 100dvh; */
+  grid-area: sidebar;
+  /* position: fixed;
+  top: 20;
+  right: 0; */
+}
+
+.LiveBox {
+  width: 90%;
+  margin-left: 5%;
+}
+
+.createBoxPosts {
+  margin-top: 5em;
+}
+
+.body::-webkit-scrollbar {
+  width: 10px; /* Para Chrome, Safari y Opera */
+}
+
+@media screen and (max-width: 800px) {
+  .boxLive {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .boxLiveStream {
+    width: 100%;
+    height: auto;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "body"
+      "sidebar";
+  }
 }

@@ -11,29 +11,62 @@
 }
 
 .warninNoLive {
-    display: grid;
-    place-content: center;
-    margin-top: 1em;
+  display: grid;
+  place-content: center;
+  margin-top: 1em;
 }
 
 .centerWarning {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 }
 
 .textWarn {
-    display: grid;
-    place-content: center;
+  display: grid;
+  place-content: center;
 }
 
 .boxIconSignal {
-    display: grid;
-    place-content: center;
+  display: grid;
+  place-content: center;
 }
 
 .iconSignal {
-    color: red;
+  color: red;
+}
+
+.layout {
+  margin-top: 7em;
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: 2fr .5fr;
+  gap: 10px;
+  grid-template-areas: "body sidebar";
+}
+
+.sidebar {
+  /* min-height: 100dvh; */
+  grid-area: sidebar;
+  /* position: fixed;
+  top: 20;
+  right: 0; */
+}
+
+.LiveBox {
+  width: 90%;
+  margin-left: 5%;
+}
+
+.body {
+  grid-area: body;
+  /* max-height: 100dvh;
+  overflow: scroll; */
+  /* scrollbar-width: none;  */
+}
+
+.body::-webkit-scrollbar {
+  width: 10px; /* Para Chrome, Safari y Opera */
 }
 
 @media screen and (max-width: 800px) {
@@ -45,5 +78,12 @@
   .boxLiveStream {
     width: 100%;
     height: auto;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "body"
+      "sidebar";
   }
 }

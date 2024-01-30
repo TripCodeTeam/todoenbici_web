@@ -1,0 +1,42 @@
+.titleGenerate {
+  width: 90%;
+  margin-left: 5%;
+  font-weight: 500;
+  color: rgb(15, 15, 159);
+}
+
+.formPrompt {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 1em;
+  gap: 10px;
+}
+
+.BasePrompt {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.BasePrompt input {
+  width: 90%;
+  outline: none;
+  border: none;
+  background: #e4e4e4;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.boxIconGPT {
+  display: grid;
+  place-content: center;
+}
+
+.iconIA {
+  width: 30px;
+  height: auto;
+}
