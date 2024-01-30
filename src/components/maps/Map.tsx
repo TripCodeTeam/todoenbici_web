@@ -9,6 +9,8 @@ import {
 } from "@react-google-maps/api";
 import axios from "axios";
 
+import { FaHome, FaBicycle } from 'react-icons/fa';
+
 interface Coordinates {
   lat: number;
   lng: number;
@@ -24,8 +26,10 @@ interface dataResponse {
   createdAt: string;
 }
 
+
 function MapComponent() {
   const [location, setLocation] = useState<Coordinates>();
+  
 
   const containerStyle = {
     width: "100%",
@@ -139,17 +143,9 @@ function MapComponent() {
     >
       <Marker
         position={markers[0]}
-        icon={{
-          url: "/markers/pin-de-mapa.png",
-          scaledSize: new window.google.maps.Size(32, 32),
-        }}
       />
       <Marker
         position={markers[markers.length - 1]}
-        icon={{
-          url: "/markers/pin-de-mapa.png",
-          scaledSize: new window.google.maps.Size(32, 32),
-        }}
       />
     </GoogleMap>
   ) : (
