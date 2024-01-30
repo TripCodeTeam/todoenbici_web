@@ -80,6 +80,17 @@
   cursor: pointer;
 }
 
+.supaBoxAccountResponsiveDesktop {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  padding: 5px 10px;
+  background: #bdbdbd;
+  border-radius: 1em;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
 .boxAccount,
 .username {
   display: grid;

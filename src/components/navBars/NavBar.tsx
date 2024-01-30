@@ -89,7 +89,12 @@ function Navbar() {
                 </div>
               </>
             ) : (
-              <FaUser />
+              <div className={styles.supaBoxAccountResponsiveDesktop}>
+                <div className={styles.boxAccount}>
+                  <FaUser />
+                </div>
+                <p className={styles.username}>Cuenta</p>
+              </div>
             )}
           </div>
         ) : (
@@ -122,7 +127,12 @@ function Navbar() {
                           </div>
                         </>
                       ) : (
-                        <FaUser />
+                        <div className={styles.supaBoxAccountResponsive}>
+                          <div className={styles.boxAccount}>
+                            <FaUser />
+                          </div>
+                          <p className={styles.username}>Cuenta</p>
+                        </div>
                       )}
                     </div>
                   </div>
@@ -174,7 +184,7 @@ function Navbar() {
 
                 <li
                   className={styles.dropdown_list}
-                  onClick={() => router.push("/ruta")}
+                  onClick={() => router.push("/cicloviajero")}
                 >
                   <div className={styles.dropdown_link}>
                     <FaBed />
@@ -186,7 +196,7 @@ function Navbar() {
 
                 <li
                   className={styles.dropdown_list}
-                  onClick={() => router.push("/ruta")}
+                  onClick={() => router.push("/community")}
                 >
                   <div className={styles.dropdown_link}>
                     <PiUsersThreeFill />

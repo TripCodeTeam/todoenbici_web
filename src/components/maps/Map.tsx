@@ -137,7 +137,6 @@ function MapComponent() {
       onUnmount={onUnmount}
       options={{ styles: mapStyles }}
     >
-      <Polyline path={markers} options={{ strokeColor: "#FF0000 " }} />
       <Marker
         position={markers[0]}
         icon={{
