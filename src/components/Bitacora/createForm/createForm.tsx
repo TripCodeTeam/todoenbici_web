@@ -10,7 +10,7 @@ const CreateForm: React.FC = () => {
     if (event.target.files) {
       setSelectedImages((prevImages) => [
         ...prevImages,
-        ...Array.from(event.target.files),
+        ...Array.from(event.target.files ? event.target.files : []),
       ]);
     }
   };
@@ -45,9 +45,8 @@ const CreateForm: React.FC = () => {
 
           <div>
             {selectedImages.map((image, index) => (
-              <div className={styles.imageContainer}>
+              <div className={styles.imageContainer} key={index}>
                 <img
-                  key={index}
                   src={URL.createObjectURL(image)}
                   alt=""
                   style={{
@@ -58,7 +57,10 @@ const CreateForm: React.FC = () => {
                     margin: "10px",
                   }}
                 />
-                <button className={styles.deleteButton} onClick={() => handleImageDelete(index)}>
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => handleImageDelete(index)}
+                >
                   {/* Botón de eliminación */}
                   <AiOutlineDelete className={styles.IconDelete} size={15} />
                 </button>
