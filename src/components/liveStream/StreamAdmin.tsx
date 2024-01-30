@@ -2,7 +2,6 @@ import MuxPlayer from "@mux/mux-player-react";
 import React, { useEffect, useState } from "react";
 import styles from "./stream.module.css";
 import axios from "axios";
-import NavbarStream from "../community/navbarStream";
 import { IoCopyOutline } from "react-icons/io5";
 import { StreamData } from "@/types/User";
 

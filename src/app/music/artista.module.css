@@ -188,7 +188,7 @@
 .backBtn {
   font-family: "Poppins", sans-serif;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   width: 90%;
   margin-left: 5%;
 }

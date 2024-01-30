@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import styles from "./video.module.css";
 import { useRouter } from "next/navigation";
 import { TbPointFilled } from "react-icons/tb";
