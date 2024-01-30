@@ -9,6 +9,7 @@ import LikeDislikeButton from "@/components/community/interactions/likedislike";
 import { ScalarPost, ScalarUser, Role } from "@/types/User";
 import { useGlobalContext } from "@/components/context/ContextDashboard";
 import Link from "next/link";
+import Image from "next/image";
 
 function PostCards() {
   const [posts, setPosts] = useState<ScalarPost[]>([]);
@@ -84,7 +85,7 @@ function PostCards() {
               <div className={styles.boxImagesPost}>
                 <div className={styles.centerImages}>
                   {post.images?.map((image) => (
-                    <img key={image} className={styles.imgPost} src={image} />
+                    <Image key={image} className={styles.imgPost} src={image} alt="" />
                   ))}
                 </div>
               </div>

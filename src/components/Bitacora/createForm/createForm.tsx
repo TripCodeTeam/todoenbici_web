@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from "react";
 import styles from "./form.module.css";
 
 import { AiOutlineDelete } from "react-icons/ai";
+import Image from "next/image";
 
 const CreateForm: React.FC = () => {
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
@@ -46,7 +47,7 @@ const CreateForm: React.FC = () => {
           <div>
             {selectedImages.map((image, index) => (
               <div className={styles.imageContainer} key={index}>
-                <img
+                <Image
                   src={URL.createObjectURL(image)}
                   alt=""
                   style={{
