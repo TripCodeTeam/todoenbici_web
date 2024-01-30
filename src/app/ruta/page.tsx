@@ -7,8 +7,6 @@ import styles from "./styles.module.css";
 import Navbar from "@/components/navBars/NavBar";
 import InfoMap from "@/components/maps/InfoMap";
 
-import { IoChevronDown } from "react-icons/io5";
-
 interface Coordinates {
   latitude: number;
   longitude: number;

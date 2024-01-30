@@ -1,6 +1,5 @@
 "use client";
 
-import NavbarStream from "@/components/community/navbarStream";
 import StreamAdmin from "@/components/liveStream/StreamAdmin";
 import AssetsStreams from "@/components/liveStream/assetsStreams";
 import { useRouter } from "next/navigation";
@@ -14,13 +13,7 @@ import Select from "react-select";
 import styles from "./page.module.css";
 import PromptComponent from "@/components/Bitacora/Prompt";
 import { useGlobalContext } from "@/components/context/ContextDashboard";
-
-const Checkbox = ({ children, ...props }: JSX.IntrinsicElements["input"]) => (
-  <label style={{ marginRight: "1em" }}>
-    <input type="checkbox" {...props} />
-    {children}
-  </label>
-);
+import Navbar from "@/components/navBars/NavBar";
 
 function Panel() {
   const { user } = useGlobalContext();
@@ -47,7 +40,7 @@ function Panel() {
     if (user ? user.rol == "streamer" : null) {
       return (
         <>
-          <NavbarStream />
+          <Navbar />
 
           <div className={styles.selectContainer}>
             <p>Crea</p>
