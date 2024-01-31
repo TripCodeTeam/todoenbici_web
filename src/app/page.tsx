@@ -150,7 +150,7 @@ function Home() {
           <div
             className={styles.boxServices}
             onClick={() => {
-              router.push("/vitacora");
+              router.push("/cicloviajero");
             }}
           >
             <Image className={styles.iconoBanner} src={banner06} alt="bn1" />
@@ -175,9 +175,10 @@ function Home() {
         <p className={styles.textPatro}>Colaboradores</p>
         <div className={styles.cubeLogos}>
           <Image
+            onClick={() => router.push("https://tripcode.vercel.app/")}
             className={styles.iconLogo}
             src={tripcode_logo}
-            alt="oskargo"
+            alt="tripcode"
           />
         </div>
       </div>

@@ -26,14 +26,22 @@ const VideoComponent: React.FC = () => {
           </h3>
           <div className={styles.boxOptiones}>
             <div className={styles.centerOptions}>
-              <div className={styles.btnStream}>
+              <div
+                className={styles.btnStream}
+                onClick={() => router.push("/stream")}
+              >
                 <div className={styles.imageIcon}>
                   <TbPointFilled className={styles.iconCirqelRed} />
                 </div>
                 <p>Streamings</p>
               </div>
 
-              <div className={styles.btnYoutube}>
+              <div
+                className={styles.btnYoutube}
+                onClick={() =>
+                  router.push("https://www.youtube.com/@TodoenBicicleta")
+                }
+              >
                 <div className={styles.imageIcon}>
                   <FaYoutube className={styles.iconYoutube} />
                 </div>

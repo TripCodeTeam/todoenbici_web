@@ -57,7 +57,7 @@ function Signin() {
       <>
         <Toaster richColors />
         <form onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.infoForm}>
+          {/* <div className={styles.infoForm}>
             <h4 className={styles.loginMessage}>COMUNIDAD</h4>
             <div className={styles.boxIcons}>
               <div className={styles.centerIcons}>
@@ -67,7 +67,7 @@ function Signin() {
                 <PiMusicNotesFill className={styles.icon} />
               </div>
             </div>
-          </div>
+          </div> */}
           <input
             className={styles.input}
             type="text"

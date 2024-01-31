@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import MuxPlayer from "@mux/mux-player-react";
 import styles from "./page.module.css";
 import axios from "axios";
@@ -8,13 +9,16 @@ import { StreamData } from "@/types/User";
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navBars/NavBar";
 import PostCards from "@/components/community/posts/PostCards";
-
 import { FiPlus } from "react-icons/fi";
+import { useGlobalContext } from "@/components/context/ContextDashboard";
 
-export default function CommunityInit() {
+const CommunityInit: React.FC = () => {
+  const { user } = useGlobalContext();
+  const router = useRouter();
   const [latestTempPlaybackId, setLatestTempPlaybackId] =
     useState<StreamData | null>(null);
   const playerRef = useRef(null);
+  const [shouldRenderContent, setShouldRenderContent] = useState(false);
 
   useEffect(() => {
     const fetchLatestTempPlaybackId = async () => {
@@ -29,7 +33,17 @@ export default function CommunityInit() {
     fetchLatestTempPlaybackId();
   }, []);
 
-  return (
+  useEffect(() => {
+    // Verifica si el usuario está autenticado y se cargó el TempPlaybackId
+    if (user && user.rol == "streamer" || user?.rol == "viewer" && latestTempPlaybackId) {
+      setShouldRenderContent(true);
+    } else {
+      // Si no hay un usuario autenticado o no se cargó el TempPlaybackId, redirige a la página principal ("/")
+      router.push("/");
+    }
+  }, [user, latestTempPlaybackId, router]);
+
+  return shouldRenderContent ? (
     <>
       <Navbar />
       <div className={styles.createBoxPosts}>
@@ -59,5 +73,7 @@ export default function CommunityInit() {
       </section>
       <Footer />
     </>
-  );
-}
+  ) : null;
+};
+
+export default CommunityInit;

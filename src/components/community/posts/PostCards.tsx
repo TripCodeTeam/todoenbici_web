@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./post.module.css";
 import axios from "axios";
-import UserService from "@/classes/User";
 import Avatar from "react-avatar";
 import LikeDislikeButton from "@/components/community/interactions/likedislike";
 import { ScalarPost, ScalarUser, Role } from "@/types/User";
@@ -11,9 +10,13 @@ import { useGlobalContext } from "@/components/context/ContextDashboard";
 import Link from "next/link";
 import Image from "next/image";
 
+import { IoChatbubbleOutline } from "react-icons/io5";
+import { IoChatbubbleSharp } from "react-icons/io5";
+
 function PostCards() {
   const [posts, setPosts] = useState<ScalarPost[]>([]);
   const [usersMap, setUsersMap] = useState<{ [key: string]: ScalarUser }>({});
+  const [viewComment, setViewComment] = useState(false);
   const { user } = useGlobalContext();
 
   useEffect(() => {
@@ -57,6 +60,10 @@ function PostCards() {
     fetchUserDataForPosts();
   }, [posts, usersMap]);
 
+  const handleOpenComments = () => {
+    setViewComment(!viewComment);
+  };
+
   return (
     <div className={styles.body}>
       {posts
@@ -85,14 +92,34 @@ function PostCards() {
               <div className={styles.boxImagesPost}>
                 <div className={styles.centerImages}>
                   {post.images?.map((image) => (
-                    <Image key={image} className={styles.imgPost} src={image} alt="" />
+                    <Image
+                      key={image}
+                      className={styles.imgPost}
+                      src={image}
+                      alt=""
+                      width={300}
+                      height={300}
+                    />
                   ))}
                 </div>
               </div>
-              <LikeDislikeButton
-                userId={user?.id as string}
-                postId={post.id as string}
-              />
+              <div className={styles.zoneInteractions}>
+                <LikeDislikeButton
+                  userId={user?.id as string}
+                  postId={post.id as string}
+                />
+                <div
+                  className={styles.commentsBtn}
+                  onClick={handleOpenComments}
+                >
+                  {viewComment ? (
+                    <IoChatbubbleSharp size={20} />
+                  ) : (
+                    <IoChatbubbleOutline size={20} />
+                  )}
+                </div>
+              </div>
+              {viewComment ? "Open Comments" : null}
             </div>
           ))
         : null}

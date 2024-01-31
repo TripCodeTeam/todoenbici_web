@@ -9,9 +9,6 @@ import { IoHeartSharp } from "react-icons/io5";
 import { IoHeartDislikeOutline } from "react-icons/io5";
 import { IoHeartDislikeSharp } from "react-icons/io5";
 
-import { IoChatbubbleOutline } from "react-icons/io5";
-import { IoChatbubbleSharp } from "react-icons/io5";
-
 
 const LikeDislikeButton = ({
   userId,
@@ -70,17 +67,6 @@ const LikeDislikeButton = ({
             <IoHeartDislikeSharp size={20} onClick={handleDislike} />
           ) : (
             <IoHeartDislikeOutline size={20} onClick={handleDislike} />
-          )}
-        </div>
-        <p className={styles.countInteraction}>{dislikes}</p>
-      </div>
-
-      <div className={styles.subBoxInteraction}>
-        <div className={styles.iconBoxInteraction}>
-          {disliked ? (
-            <IoChatbubbleSharp size={20} onClick={handleDislike} />
-          ) : (
-            <IoChatbubbleOutline size={20} onClick={handleDislike} />
           )}
         </div>
         <p className={styles.countInteraction}>{dislikes}</p>

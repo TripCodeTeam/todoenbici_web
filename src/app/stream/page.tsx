@@ -2,7 +2,7 @@ import ComingSoon from "@/components/comingSoon/ComingSoon";
 import Navbar from "@/components/navBars/NavBar";
 import React from "react";
 
-function GuiePage() {
+function StreamPage() {
   return (
     <>
       <Navbar />
@@ -11,4 +11,4 @@ function GuiePage() {
   );
 }
 
-export default GuiePage;
+export default StreamPage;

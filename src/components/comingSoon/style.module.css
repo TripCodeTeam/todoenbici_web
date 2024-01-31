@@ -1,0 +1,53 @@
+.Menssage {
+  font-size: 40px;
+  margin-top: 2em;
+  text-align: center;
+  font-weight: 600;
+}
+
+.BoxIcon {
+  display: grid;
+  place-content: center;
+}
+
+.centerBoxProgress {
+  display: flex;
+  flex-direction: row;
+}
+
+.boxProgress {
+  display: grid;
+  place-content: center;
+}
+
+@keyframes changeColor {
+  0% {
+    color: transparent;
+  }
+  50% {
+    color: green;
+  }
+  100% {
+    color: transparent;
+  }
+}
+
+.infoDev {
+    font-weight: 400;
+    color: #616161;
+}
+
+.tripcode {
+    cursor: pointer;
+    margin-left: 2px;
+    color: black;
+    font-weight: 500;
+}
+
+.tripcode:hover {
+    color: #171717;
+}
+
+.icon {
+  animation: changeColor 2s linear infinite;
+}

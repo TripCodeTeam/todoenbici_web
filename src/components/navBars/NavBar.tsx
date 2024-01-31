@@ -72,6 +72,14 @@ function Navbar() {
               </Link>
             </div>
 
+            {user && user.rol ? (
+              <div className={styles.subAccount}>
+                <Link href={"/profile/panel"} className={styles.login}>
+                  Panel
+                </Link>
+              </div>
+            ) : null}
+
             {user ? (
               <>
                 <div
@@ -89,7 +97,10 @@ function Navbar() {
                 </div>
               </>
             ) : (
-              <div className={styles.supaBoxAccountResponsiveDesktop}>
+              <div
+                className={styles.supaBoxAccountResponsiveDesktop}
+                onClick={() => router.push("/auth")}
+              >
                 <div className={styles.boxAccount}>
                   <FaUser />
                 </div>
@@ -115,7 +126,12 @@ function Navbar() {
                     <div className={styles.IconUser}>
                       {user ? (
                         <>
-                          <div className={styles.supaBoxAccountResponsive}>
+                          <div
+                            className={styles.supaBoxAccountResponsive}
+                            onClick={() =>
+                              router.push(`/profile/${user.username}`)
+                            }
+                          >
                             <div className={styles.boxAccount}>
                               <Avatar
                                 src={"https://github.com/foultrip.png"}
