@@ -143,7 +143,10 @@ function Navbar() {
                           </div>
                         </>
                       ) : (
-                        <div className={styles.supaBoxAccountResponsive}>
+                        <div
+                          className={styles.supaBoxAccountResponsive}
+                          onClick={() => router.push("/auth")}
+                        >
                           <div className={styles.boxAccount}>
                             <FaUser />
                           </div>
