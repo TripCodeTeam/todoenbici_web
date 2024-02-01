@@ -40,7 +40,7 @@ export type ScalarPost = {
   userId: string;
 };
 
-export type Comment = {
+export type ScalarComment = {
   id: string;
   content: string;
   userId: string;

@@ -1,5 +1,5 @@
 import { prisma } from "@/prisma/db";
-import { ScalarPost, Comment, Like, Dislike, ScalarUser } from "@/types/User";
+import { ScalarPost, Like, Dislike, ScalarUser } from "@/types/User";
 import { Post, Prisma } from "@prisma/client";
 
 class PostService {
@@ -57,7 +57,11 @@ class PostService {
   }
 
   // Add like to post method
-  static async addLike(postId: string, user: ScalarUser): Promise<Like> {
+  static async addLike(
+    postId: string,
+    user: ScalarUser,
+    commentId: string
+  ): Promise<Like> {
     if (user.id === undefined) {
       throw new Error("El ID de usuario no está definido.");
     }
@@ -65,19 +69,25 @@ class PostService {
     return prisma.like.create({
       data: {
         postId,
+        commentId,
         userId: user.id,
       },
     });
   }
 
   // Add dislike to post method
-  static async addDislike(postId: string, user: ScalarUser): Promise<Dislike> {
+  static async addDislike(
+    postId: string,
+    user: ScalarUser,
+    commentId: string
+  ): Promise<Dislike> {
     if (user.id === undefined) {
       throw new Error("El ID de usuario no está definido.");
     }
     return prisma.dislike.create({
       data: {
         postId,
+        commentId,
         userId: user.id,
       },
     });
