@@ -1,0 +1,11 @@
+meta {
+  name: Create Comment
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{Backend_url}}/api/comment/create
+  body: json
+  auth: bearer
+}

@@ -12,6 +12,7 @@ import Image from "next/image";
 
 import { IoChatbubbleOutline } from "react-icons/io5";
 import { IoChatbubbleSharp } from "react-icons/io5";
+import CommentsBox from "../interactions/comments";
 
 function PostCards() {
   const [posts, setPosts] = useState<ScalarPost[]>([]);
@@ -23,7 +24,11 @@ function PostCards() {
     // Fetch posts and update state
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("api/post/get");
+        const response = await axios.get("api/post/get", {
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          },
+        });
         setPosts(response.data);
       } catch (error) {
         console.error("Error fetching posts", error);
@@ -119,7 +124,7 @@ function PostCards() {
                   )}
                 </div>
               </div>
-              {viewComment ? "Open Comments" : null}
+              {viewComment ? <CommentsBox /> : null}
             </div>
           ))
         : null}

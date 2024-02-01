@@ -20,10 +20,14 @@ import banner07 from "@/assets/services_img/banner07.jpg";
 import tripcode_logo from "@/assets/tripcode_logo.png";
 import VideoComponent from "@/components/video/VideoComponent";
 import AutoSliderLeft from "@/components/slider/autoSliderLeft";
+import { useGlobalContext } from "@/components/context/ContextDashboard";
 
 function Home() {
   const router = useRouter();
   const isBigScreen = useMediaQuery({ query: "(min-width: 900px)" });
+
+  const { user } = useGlobalContext();
+  console.log(user)
 
   return (
     <>

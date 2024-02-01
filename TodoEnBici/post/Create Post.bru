@@ -7,7 +7,11 @@ meta {
 post {
   url: {{Backend_url}}/api/post/create
   body: json
-  auth: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3NzM0Mzg2Mi0zYmQ3LTQyZmQtOWI0MC1mZDQ3OWMxMTMyN2IiLCJ1c2VyRW1haWwiOiJjYXJsb3NhbGJlcnRvdmFzcXVlem1haGVjaGFAZ21haWwuY29tIiwiaWF0IjoxNzA2NzIzMjk1LCJleHAiOjE3MDY3MjY4OTV9.8qlRIP25pxz8A5SbVloFu5Mexd-po9TH9ciX-nJAgbM
 }
 
 body:json {
@@ -19,6 +23,6 @@ body:json {
     ],
     "video": "",
     "location": "Colombia",
-    "userId": "77343862-3bd7-42fd-9b40-fd479c11327b"
+    "userId": "b2765975-dabf-450e-b678-7da9b4489b91"
   }
 }

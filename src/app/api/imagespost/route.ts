@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-import { v2 as cloudinary } from "cloudinary";
-import path from "path";
-import fs from "fs";
+import { v2 as cloudinary, UploadApiResponse } from "cloudinary";
+import { Readable } from "stream";
 import TokenService from "@/classes/Token";
 
 cloudinary.config({
@@ -32,6 +31,7 @@ export async function POST(req: Request) {
     if (!decodedToken) {
       return NextResponse.json({ message: "Token no válido" }, { status: 401 });
     }
+    
     const data = await req.formData();
     const file = data.get("file");
 
@@ -43,20 +43,26 @@ export async function POST(req: Request) {
       });
     }
 
-    const arrayBuffer = await file.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
+    // Convert Blob to Readable Stream
+    const stream = Readable.from([await file.arrayBuffer()]);
 
-    const filePath = path.join(process.cwd(), "public", file.name);
-
-    await fs.promises.writeFile(filePath, buffer);
-
-    const response = await cloudinary.uploader.upload(filePath);
+    const response = await new Promise<UploadApiResponse>((resolve, reject) => {
+      // Use upload_stream to upload from a Readable stream
+      cloudinary.uploader
+        .upload_stream((error: any, result: UploadApiResponse) => {
+          if (error) reject(error);
+          else resolve(result);
+        })
+        .end(stream);
+    });
 
     const url = response.secure_url;
 
     return NextResponse.json(url);
   } catch (error) {
-    console.error(`Error al escribir el archivo: ${error}`);
-    return NextResponse.json("Error al escribir el archivo", { status: 500 });
+    console.error(`Error al subir la imagen a Cloudinary: ${error}`);
+    return NextResponse.json("Error al subir la imagen a Cloudinary", {
+      status: 500,
+    });
   }
 }
