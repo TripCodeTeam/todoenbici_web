@@ -36,7 +36,7 @@ function PostCards() {
     };
 
     fetchPosts();
-  }, []);
+  }, [user?.token]);
 
   useEffect(() => {
     // Fetch user data for each post

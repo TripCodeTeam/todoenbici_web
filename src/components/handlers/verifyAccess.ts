@@ -1,17 +1,20 @@
 import axios from "axios";
-import TokenService from "@/classes/Token";
 import { useGlobalContext } from "../context/ContextDashboard";
+
+// Crear un Hook personalizado para obtener el token
+function useAuthToken() {
+  const { user } = useGlobalContext();
+  return user?.token;
+}
 
 // Crear una instancia de axios
 const axiosAccess = axios.create();
 
-const { user } = useGlobalContext();
-
 // Añadir un interceptor de solicitud
 axiosAccess.interceptors.request.use(
   (config) => {
-    // Obtener el token del estado global (aquí necesitarás implementar tu propia lógica para obtener el token)
-    const token = user?.token;
+    // Usar el Hook personalizado para obtener el token
+    const token = useAuthToken();
 
     // Si hay un token, añadirlo al encabezado de autorización
     if (token) {
