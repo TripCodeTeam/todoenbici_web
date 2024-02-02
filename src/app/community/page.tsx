@@ -45,7 +45,7 @@ const CommunityInit: React.FC = () => {
 
   useEffect(() => {
     // Verifica si el usuario está autenticado
-    if ((user && user.rol == "viewer") || ("streamer" && user?.token)) {
+    if (user && user.token) {
       setShouldRenderContent(true);
     } else {
       // Si no hay un usuario autenticado o no se cargó el TempPlaybackId, redirige a la página principal ("/")
