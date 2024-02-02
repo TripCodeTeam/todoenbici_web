@@ -15,7 +15,7 @@ import { AiOutlineMenu, AiFillHome } from "react-icons/ai";
 import { IoMdCloseCircle, IoIosMusicalNotes } from "react-icons/io";
 import { FaMap, FaBicycle, FaBed } from "react-icons/fa";
 import { PiUsersThreeFill } from "react-icons/pi";
-import { FaUser } from "react-icons/fa";
+import { MdAccountCircle } from "react-icons/md";
 
 // interface NavBarProps {
 //   openModal: (content: React.ReactNode) => void;
@@ -72,7 +72,7 @@ function Navbar() {
               </Link>
             </div>
 
-            {user && user.rol ? (
+            {user && user.rol == "streamer" ? (
               <div className={styles.subAccount}>
                 <Link href={"/profile/panel"} className={styles.login}>
                   Panel
@@ -102,7 +102,7 @@ function Navbar() {
                 onClick={() => router.push("/auth")}
               >
                 <div className={styles.boxAccount}>
-                  <FaUser />
+                  <MdAccountCircle size={25} />
                 </div>
                 <p className={styles.username}>Cuenta</p>
               </div>
@@ -148,7 +148,7 @@ function Navbar() {
                           onClick={() => router.push("/auth")}
                         >
                           <div className={styles.boxAccount}>
-                            <FaUser />
+                            <MdAccountCircle size={25} />
                           </div>
                           <p className={styles.username}>Cuenta</p>
                         </div>
@@ -222,6 +222,14 @@ function Navbar() {
                     <span className={styles.dropdown_span}>Comunidad</span>
                   </div>
                 </li>
+
+                {user && user.rol == "streamer" ? (
+                  <div className={styles.subAccount}>
+                    <Link href={"/profile/panel"} className={styles.login}>
+                      Panel
+                    </Link>
+                  </div>
+                ) : null}
               </ul>
             ) : null}
           </div>

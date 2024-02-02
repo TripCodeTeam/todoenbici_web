@@ -1,0 +1,21 @@
+meta {
+  name: Add Comment
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{Backend_url}}/api/interacctions/comment/add
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "postId": "a71e1cd5-c89b-4b8d-87c1-5b0fdcf16182",
+    "data": {
+      "content": "Este es un comentario de ejemplo.",
+      "userId": "b2765975-dabf-450e-b678-7da9b4489b91"
+    }
+  }
+}

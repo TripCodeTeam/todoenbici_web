@@ -9,7 +9,8 @@ import {
 } from "@react-google-maps/api";
 import axios from "axios";
 
-import { FaHome, FaBicycle } from 'react-icons/fa';
+import { FaHome, FaBicycle } from "react-icons/fa";
+import { useGlobalContext } from "../context/ContextDashboard";
 
 interface Coordinates {
   lat: number;
@@ -26,10 +27,9 @@ interface dataResponse {
   createdAt: string;
 }
 
-
 function MapComponent() {
   const [location, setLocation] = useState<Coordinates>();
-  
+  const { user } = useGlobalContext();
 
   const containerStyle = {
     width: "100%",
@@ -39,7 +39,11 @@ function MapComponent() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api/coordinates");
+        const response = await axios.get("/api/coordinates", {
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          },
+        });
         const data: dataResponse = response.data;
         const filterResponse = {
           lat: data.latitude,
@@ -141,12 +145,8 @@ function MapComponent() {
       onUnmount={onUnmount}
       options={{ styles: mapStyles }}
     >
-      <Marker
-        position={markers[0]}
-      />
-      <Marker
-        position={markers[markers.length - 1]}
-      />
+      <Marker position={markers[0]} />
+      <Marker position={markers[markers.length - 1]} />
     </GoogleMap>
   ) : (
     <></>

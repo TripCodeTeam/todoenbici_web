@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import styles from "./styles.module.css";
@@ -9,13 +9,14 @@ import { IoHeartSharp } from "react-icons/io5";
 import { IoHeartDislikeOutline } from "react-icons/io5";
 import { IoHeartDislikeSharp } from "react-icons/io5";
 
-
 const LikeDislikeButton = ({
   userId,
   postId,
+  leftPadding,
 }: {
   userId: string;
   postId: string;
+  leftPadding: number;
 }) => {
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
@@ -49,13 +50,24 @@ const LikeDislikeButton = ({
   };
 
   return (
-    <div className={styles.boxInteraction}>
+    <div
+      className={styles.boxInteraction}
+      style={{ paddingLeft: `${leftPadding}px` }}
+    >
       <div className={styles.subBoxInteraction}>
         <div className={styles.iconBoxInteraction}>
           {liked ? (
-            <IoHeartSharp size={20} onClick={handleLike} />
+            <IoHeartSharp
+              size={20}
+              onClick={handleLike}
+              className={styles.iconHeartClose}
+            />
           ) : (
-            <IoHeartOutline size={20} onClick={handleLike} />
+            <IoHeartOutline
+              size={20}
+              onClick={handleLike}
+              className={styles.iconHeartOpen}
+            />
           )}
         </div>
         <p className={styles.countInteraction}>{likes}</p>
@@ -64,9 +76,17 @@ const LikeDislikeButton = ({
       <div className={styles.subBoxInteraction}>
         <div className={styles.iconBoxInteraction}>
           {disliked ? (
-            <IoHeartDislikeSharp size={20} onClick={handleDislike} />
+            <IoHeartDislikeSharp
+              size={20}
+              onClick={handleDislike}
+              className={styles.iconHeartClose}
+            />
           ) : (
-            <IoHeartDislikeOutline size={20} onClick={handleDislike} />
+            <IoHeartDislikeOutline
+              size={20}
+              onClick={handleDislike}
+              className={styles.iconHeartOpen}
+            />
           )}
         </div>
         <p className={styles.countInteraction}>{dislikes}</p>

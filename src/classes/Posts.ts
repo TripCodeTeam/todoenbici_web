@@ -42,57 +42,6 @@ class PostService {
     return prisma.post.delete({ where: { id } });
   }
 
-  // Add comment to post method
-  static async addComment(
-    postId: string,
-    data: { content: string; userId: string }
-  ): Promise<Comment> {
-    return prisma.comment.create({
-      data: {
-        content: data.content,
-        postId,
-        userId: data.userId,
-      },
-    });
-  }
-
-  // Add like to post method
-  static async addLike(
-    postId: string,
-    user: ScalarUser,
-    commentId: string
-  ): Promise<Like> {
-    if (user.id === undefined) {
-      throw new Error("El ID de usuario no está definido.");
-    }
-
-    return prisma.like.create({
-      data: {
-        postId,
-        commentId,
-        userId: user.id,
-      },
-    });
-  }
-
-  // Add dislike to post method
-  static async addDislike(
-    postId: string,
-    user: ScalarUser,
-    commentId: string
-  ): Promise<Dislike> {
-    if (user.id === undefined) {
-      throw new Error("El ID de usuario no está definido.");
-    }
-    return prisma.dislike.create({
-      data: {
-        postId,
-        commentId,
-        userId: user.id,
-      },
-    });
-  }
-
   // Método para obtener todos los posts de un usuario específico
   static async getAllByUserId(userId: string): Promise<Post[]> {
     return prisma.post.findMany({

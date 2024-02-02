@@ -16,6 +16,19 @@ interface cordenatesProps {
 
 export async function GET(req: Request) {
   try {
+    // Utilizamos CoordinatesService para obtener las últimas coordenadas
+    const latestCoordinates = await CoordinatesService.getLatestCoordinates();
+
+    // Devolvemos las coordenadas obtenidas desde Prisma
+    return NextResponse.json(latestCoordinates);
+  } catch (error) {
+    console.error("Error al obtener datos:", error);
+    return NextResponse.json("Error al obtener datos");
+  }
+}
+
+export async function POST(req: Request) {
+  try {
     // Verificar la autenticación JWT
     const authorizationHeader = req.headers.get("Authorization");
 
@@ -37,19 +50,6 @@ export async function GET(req: Request) {
       return NextResponse.json({ message: "Token no válido" }, { status: 401 });
     }
 
-    // Utilizamos CoordinatesService para obtener las últimas coordenadas
-    const latestCoordinates = await CoordinatesService.getLatestCoordinates();
-
-    // Devolvemos las coordenadas obtenidas desde Prisma
-    return NextResponse.json(latestCoordinates);
-  } catch (error) {
-    console.error("Error al obtener datos:", error);
-    return NextResponse.json("Error al obtener datos");
-  }
-}
-
-export async function POST(req: Request) {
-  try {
     const { longitude, latitude }: ReqProps = await req.json();
 
     const locationData: cordenatesProps = await GetUbication(

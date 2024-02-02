@@ -10,9 +10,12 @@ import { GiPathDistance } from "react-icons/gi";
 import Image from "next/image";
 import imgBitacora from "@/assets/bitacora_img_preview.jpg";
 
+import { ImSpinner3 } from "react-icons/im";
+
 import styles from "./infoMap.module.css";
 import { CiCalendarDate } from "react-icons/ci";
 import haversine from "../handlers/Haversine";
+import { useGlobalContext } from "../context/ContextDashboard";
 
 interface cordenatesProps {
   id: string;
@@ -26,11 +29,16 @@ interface cordenatesProps {
 function InfoMap() {
   const [location, setLocation] = useState<cordenatesProps | null>(null);
   const [distance, setDistance] = useState<number | null>(null);
+  const { user } = useGlobalContext();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api/coordinates");
+        const response = await axios.get("/api/coordinates", {
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          },
+        });
         // console.log(response);
         setLocation(response.data);
 
@@ -54,7 +62,12 @@ function InfoMap() {
 
   return (
     <div className={styles.infoContainer}>
-      <h2 className={styles.titleInfo}>Ubicación actual</h2>
+      <div className={styles.boxCurrentLocation}>
+        <h2 className={styles.titleInfo}>Ubicación actual</h2>
+        <div className={styles.boxSpinner}>
+          <ImSpinner3 className={styles.iconSpinner} />
+        </div>
+      </div>
       <div className={styles.boxesInfo}>
         <div className={styles.boxProperty}>
           <div className={styles.boxIcon}>
@@ -102,7 +115,8 @@ function InfoMap() {
 
       <h2 className={styles.titleInfoBitacora}>Bitácora</h2>
       <div className={styles.bitacoraContainer}>
-        <div className={styles.cardBitacora}>
+        <p>Sin Bitacoras por el momento!</p>
+        {/* <div className={styles.cardBitacora}>
           <div className={styles.boxImage}>
             <Image
               className={styles.imgBitacora}
@@ -205,7 +219,7 @@ function InfoMap() {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

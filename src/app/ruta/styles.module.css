@@ -7,8 +7,9 @@
   padding: 10px;
   text-align: center;
   font-family: "Poppins", sans-serif;
-  color: #000080;
+  color: #b04242;
   margin-bottom: 1rem;
+  font-weight: 700;
 }
 
 .mapBox {
@@ -63,5 +64,9 @@
   .mapBox {
     width: 100%;
     margin: 0;
+  }
+
+  .titleHeader {
+    font-size: 17px;
   }
 }

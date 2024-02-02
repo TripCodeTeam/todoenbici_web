@@ -3,10 +3,25 @@
   margin-left: 5%;
 }
 
-.boxProperty {
+.boxCurrentLocation {
   display: flex;
   flex-direction: row;
   gap: 5px;
+}
+
+.boxSpinner {
+  display: grid;
+  place-content: center;
+}
+
+.iconSpinner {
+  animation: spin 1s linear infinite;
+}
+
+.boxProperty {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
 .boxesInfo {
@@ -16,7 +31,8 @@
 }
 
 .titleInfo {
-  margin-bottom: 0.4em;
+  display: grid;
+  place-content: center;
 }
 
 .titleInfoBitacora {
@@ -34,13 +50,13 @@
 }
 
 .icon {
-  color: #343434;
+  color: #bcbcbc;
 }
 
 .bitacoraContainer {
-  background: #eaeaea;
+  background: #5a5a5a;
   height: 30vh;
-  overflow: scroll; 
+  overflow: scroll;
   padding: 10px;
   border-radius: 1em;
   display: flex;
@@ -56,8 +72,12 @@
   gap: 10px;
   /* padding: 5px 10px 5px 10px; */
   padding: 10px;
-  background: #fff;
+  background: #2a2a2a;
   border-radius: 1em;
+}
+
+.cardBitacora:hover {
+  scale: 1.01;
 }
 
 .boxImage {
@@ -112,9 +132,17 @@
   place-content: center;
 }
 
-
 @media screen and (max-width: 800px) {
   .bitacoraContainer {
     height: 51vh;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

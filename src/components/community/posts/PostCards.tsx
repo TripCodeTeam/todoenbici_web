@@ -3,21 +3,22 @@
 import React, { useEffect, useState } from "react";
 import styles from "./post.module.css";
 import axios from "axios";
-import Avatar from "react-avatar";
 import LikeDislikeButton from "@/components/community/interactions/likedislike";
-import { ScalarPost, ScalarUser, Role } from "@/types/User";
+import { ScalarPost, ScalarUser, Role, AuthUser } from "@/types/User";
 import { useGlobalContext } from "@/components/context/ContextDashboard";
-import Link from "next/link";
 import Image from "next/image";
 
 import { IoChatbubbleOutline } from "react-icons/io5";
 import { IoChatbubbleSharp } from "react-icons/io5";
 import CommentsBox from "../interactions/comments";
+import PostCard from "./CardPostCard";
 
 function PostCards() {
   const [posts, setPosts] = useState<ScalarPost[]>([]);
   const [usersMap, setUsersMap] = useState<{ [key: string]: ScalarUser }>({});
-  const [viewComment, setViewComment] = useState(false);
+  const [viewComment, setViewComment] = useState<{ [postId: string]: boolean }>(
+    {}
+  );
   const { user } = useGlobalContext();
 
   useEffect(() => {
@@ -62,70 +63,36 @@ function PostCards() {
       }
     };
 
-    fetchUserDataForPosts();
+    let isMounted = true;
+
+    if (isMounted) {
+      fetchUserDataForPosts();
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, [posts, usersMap]);
 
-  const handleOpenComments = () => {
-    setViewComment(!viewComment);
+  const handleOpenComments = (postId: string) => {
+    setViewComment((prevViewComments) => ({
+      ...prevViewComments,
+      [postId]: !prevViewComments[postId],
+    }));
   };
 
   return (
     <div className={styles.body}>
       {posts
         ? posts.map((post: ScalarPost, index) => (
-            <div className={styles.cardPost} key={index}>
-              <div className={styles.headerPost}>
-                <div className={styles.boxUser}>
-                  <div className={styles.avatarUser}>
-                    <Avatar
-                      src={usersMap[post.userId]?.avatar as string}
-                      round={true}
-                      size="30"
-                    />
-                  </div>
-                  <p className={styles.nameUser}>
-                    {usersMap[post.userId]?.firstName}
-                    {/* {usersMap[post.userId]?.lastName} */}
-                  </p>
-                  <p className={styles.username}>
-                    @{usersMap[post.userId]?.username}
-                  </p>
-                </div>
-              </div>
-              <p className={styles.ContentPost}>{post.content}</p>
-
-              <div className={styles.boxImagesPost}>
-                <div className={styles.centerImages}>
-                  {post.images?.map((image) => (
-                    <Image
-                      key={image}
-                      className={styles.imgPost}
-                      src={image}
-                      alt=""
-                      width={300}
-                      height={300}
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className={styles.zoneInteractions}>
-                <LikeDislikeButton
-                  userId={user?.id as string}
-                  postId={post.id as string}
-                />
-                <div
-                  className={styles.commentsBtn}
-                  onClick={handleOpenComments}
-                >
-                  {viewComment ? (
-                    <IoChatbubbleSharp size={20} />
-                  ) : (
-                    <IoChatbubbleOutline size={20} />
-                  )}
-                </div>
-              </div>
-              {viewComment ? <CommentsBox /> : null}
-            </div>
+            <PostCard
+              key={index}
+              post={post}
+              usersMap={usersMap}
+              user={user as AuthUser}
+              viewComment={viewComment[post?.id as string] || false}
+              handleOpenComments={() => handleOpenComments(post.id as string)}
+            />
           ))
         : null}
     </div>

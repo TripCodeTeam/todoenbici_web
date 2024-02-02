@@ -1,0 +1,11 @@
+meta {
+  name: Add Reply
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{Backend_url}}/api/interacctions/reply/create
+  body: none
+  auth: bearer
+}

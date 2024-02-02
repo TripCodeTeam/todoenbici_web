@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import styles from "../signin/signin.module.css";
 import { AuthUser, ScalarUser } from "@/types/User";
 import { useGlobalContext } from "@/components/context/ContextDashboard";
+import AvatarUpload from "../AvatarChange";
 
 interface UserTypes {
   username: string;
@@ -59,7 +60,7 @@ function Signup() {
 
         const imageResponse = await axios.post("/api/avatar", imageFormData);
         avatarUrl = imageResponse.data;
-        console.log(imageResponse)
+        console.log(imageResponse);
       }
 
       // Incluye el avatarUrl en el cuerpo de la solicitud para crear el usuario
@@ -140,12 +141,15 @@ function Signup() {
           onChange={handleChange}
         />
 
-        <input
+        {/* <input
+          className={styles.inputImg}
           type="file"
           accept="image/*"
           name="avatar"
           onChange={handleImageChange}
-        />
+        /> */}
+
+        <AvatarUpload />
 
         <div className={styles.btnSubmit}>
           <button type="submit">Registrarse</button>
