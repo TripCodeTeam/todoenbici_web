@@ -25,12 +25,13 @@ function PostCards() {
     // Fetch posts and update state
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("api/post/get", {
-          headers: {
-            Authorization: `Bearer ${user?.token}`,
-          },
-        });
-        setPosts(response.data);
+      const response = await axios.get("api/post/get")
+        console.log(response.data);
+        if (Array.isArray(response.data)) {
+          setPosts(response.data);
+        } else {
+          console.error("Error: response.data is not an array", response.data);
+        }
       } catch (error) {
         console.error("Error fetching posts", error);
       }
@@ -72,7 +73,7 @@ function PostCards() {
     return () => {
       isMounted = false;
     };
-  }, [posts, usersMap]);
+  }, [posts, usersMap, user?.token]);
 
   const handleOpenComments = (postId: string) => {
     setViewComment((prevViewComments) => ({
