@@ -56,7 +56,7 @@ function MapComponent() {
     };
 
     fetchData();
-  }, []);
+  }, [user?.token]);
 
   const mapStyles = [
     {

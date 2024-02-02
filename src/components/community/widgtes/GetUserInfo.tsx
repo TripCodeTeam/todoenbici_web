@@ -2,7 +2,7 @@ import UserService from "@/classes/User";
 import { useGlobalContext } from "@/components/context/ContextDashboard";
 import { ScalarUser } from "@/types/User";
 import axios from "axios";
-import styles from "./info.module.css"
+import styles from "./info.module.css";
 import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
 
@@ -30,12 +30,12 @@ function GetUserInfo({ userId }: GetInfoUser) {
     };
 
     getDetails();
-  }, [userId]);
+  }, [userId, user?.token]);
   return (
     <>
       <div className={styles.containerUser}>
         <div className={styles.boxAvatar}>
-          <Avatar src={userDetails?.avatar as string} round={true}  size="20" />
+          <Avatar src={userDetails?.avatar as string} round={true} size="20" />
         </div>
         <p className={styles.boxUsername}>{userDetails?.username}</p>
       </div>

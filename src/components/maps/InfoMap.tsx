@@ -58,7 +58,7 @@ function InfoMap() {
     };
 
     fetchData();
-  }, []);
+  }, [user?.token]);
 
   return (
     <div className={styles.infoContainer}>

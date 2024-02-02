@@ -23,7 +23,7 @@ const CommunityInit: React.FC = () => {
   useEffect(() => {
     const fetchLatestTempPlaybackId = async () => {
       try {
-        const response = await axios.get("/api/tempPlaybackId/get");
+        const response = await axios.get("/api/templayback/get");
         setLatestTempPlaybackId(response.data);
       } catch (error) {
         console.error("Error fetching latest TempPlaybackId:", error);
@@ -33,27 +33,7 @@ const CommunityInit: React.FC = () => {
     fetchLatestTempPlaybackId();
   }, []);
 
-  // useEffect(() => {
-  //   // Verifica si el usuario está autenticado y se cargó el TempPlaybackId
-  //   if (user && user.rol == "streamer" || user?.rol == "viewer") {
-  //     setShouldRenderContent(true);
-  //   } else {
-  //     // Si no hay un usuario autenticado o no se cargó el TempPlaybackId, redirige a la página principal ("/")
-  //     router.push("/auth");
-  //   }
-  // }, [user, router]);
-
-  useEffect(() => {
-    // Verifica si el usuario está autenticado
-    if (user && user.token) {
-      setShouldRenderContent(true);
-    } else {
-      // Si no hay un usuario autenticado o no se cargó el TempPlaybackId, redirige a la página principal ("/")
-      router.push("/auth");
-    }
-  }, [user, router]);
-
-  return shouldRenderContent ? (
+  return  (
     <>
       <Navbar />
       <div className={styles.createBoxPosts}>
@@ -83,7 +63,7 @@ const CommunityInit: React.FC = () => {
       </section>
       <Footer />
     </>
-  ) : null;
+  );
 };
 
 export default CommunityInit;
