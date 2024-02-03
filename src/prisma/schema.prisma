@@ -82,8 +82,8 @@ model Dislike {
 
 model Coordinates {
     id        String   @id @default(uuid()) @map("_id")
-    latitude  String
-    longitude String
+    latitude  Float
+    longitude Float
     country   String
     city      String
     state     String
