@@ -34,14 +34,15 @@ export async function POST(req: Request) {
     }
 
     // Desestructuramos los campos necesarios del cuerpo de la solicitud
-    const { content, images, video, location, userId }: ScalarPost =
+    const { content, images, videos, location, userId }: ScalarPost =
       await req.json();
 
     // Creamos un nuevo usuario utilizando el servicio de usuario
     const newUser = await PostService.create({
+      title: "",
       content,
       images: images || undefined,
-      video: video || undefined,
+      videos: videos || undefined,
       location,
       userId,
     });
