@@ -19,17 +19,25 @@ class CoordinatesService {
   }
 
   static async createCoordinates(
-    latitude: number,
-    longitude: number,
+    latitude: string,
+    longitude: string,
     city: string,
     country: string,
     state: string
   ): Promise<Coordinates> {
     try {
+      const parsedLatitude = parseFloat(latitude);
+      const parsedLongitude = parseFloat(longitude);
+
+      // Verificar si la conversión fue exitosa
+      if (isNaN(parsedLatitude) || isNaN(parsedLongitude)) {
+        throw new Error("Valores de latitud o longitud no válidos");
+      }
+
       return await prisma.coordinates.create({
         data: {
-          latitude,
-          longitude,
+          latitude: parsedLatitude,
+          longitude: parsedLongitude,
           city,
           country,
           state,

@@ -11,6 +11,7 @@ import { AiFillMessage } from "react-icons/ai";
 import { PiMusicNotesFill } from "react-icons/pi";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { useGlobalContext } from "@/components/context/ContextDashboard";
+import { AuthUser } from "@/types/User";
 
 function Signin() {
   const { user, setUserData } = useGlobalContext();
@@ -34,16 +35,16 @@ function Signin() {
 
     try {
       const response = await axios.post("/api/user/signin", formData);
+      const data: AuthUser = response.data;
 
-      if (response.data) {
-        console.log()
-        setUserData(response.data);
+      if (data.token) {
+        setUserData(data);
         toast.success("Usuario encontrado");
         setTimeout(() => {
           route.push("/community");
         }, 3000);
       } else {
-        toast.error("Error de autenticado");
+        toast.error("Credenciales invalidas");
       }
     } catch (error) {
       toast.error("Failed signin");

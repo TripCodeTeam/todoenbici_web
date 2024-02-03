@@ -33,10 +33,11 @@ export type TempPlaybackId = {
 
 export type ScalarPost = {
   id?: string;
+  title: string;
   content: string;
   images?: string[];
-  video?: string;
-  location: string;
+  videos?: string[];
+  location?: string;
   userId: string;
 };
 
@@ -60,8 +61,8 @@ export type Dislike = {
 
 export type Coordinates = {
   id: string;
-  latitude: number;
-  longitude: number;
+  latitude: string;
+  longitude: string;
   country: string;
   city: string;
   state: string;

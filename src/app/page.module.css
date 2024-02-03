@@ -15,7 +15,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: scroll;
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
   padding-top: 1.3em;
   display: grid;

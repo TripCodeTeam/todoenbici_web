@@ -2,7 +2,7 @@
   width: 90%;
   margin-left: 5%;
   font-weight: 500;
-  color: rgb(15, 15, 159);
+  color: #3f3faa;
 }
 
 .formPrompt {
@@ -22,13 +22,15 @@
   flex-grow: 1;
 }
 
-.BasePrompt input {
+.BasePrompt textarea {
   width: 90%;
   outline: none;
   border: none;
   background: #e4e4e4;
   padding: 10px;
   border-radius: 10px;
+  color: black;
+  resize: vertical;
 }
 
 .boxIconGPT {
@@ -39,4 +41,16 @@
 .iconIA {
   width: 30px;
   height: auto;
+  filter: drop-shadow(5px, 10px #fff);
+}
+
+.btnGenerate {
+  display: grid;
+  place-content: center;
+}
+
+.btnGenerate button {
+  outline: none;
+  padding: 5px 10px;
+  border-radius: 10px;
 }

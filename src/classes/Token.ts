@@ -11,7 +11,7 @@ class TokenService {
    * @returns {string} El token JWT.
    */
   static createToken(payload: object, secret: string): string {
-    return jwt.sign(payload, secret, { expiresIn: "1h" });
+    return jwt.sign(payload, secret, { expiresIn: "2d" });
   }
 
   /**
@@ -21,11 +21,20 @@ class TokenService {
    * @returns {object | null} El payload del token.
    */
   static verifyToken(token: string, secret: string): object | null {
-    const payload = jwt.verify(token, secret);
+    try {
+      const payload = jwt.verify(token, secret);
 
-    // Verificamos si el payload es un objeto
-    if (typeof payload == "object" && payload !== null) {
-      return payload;
+      if (typeof payload == "object" && payload !== null) {
+        return payload;
+      }
+    } catch (error) {
+      if (error instanceof jwt.TokenExpiredError) {
+        console.log("El token ha expirado");
+      } else if (error instanceof jwt.JsonWebTokenError) {
+        console.log("Error en el token JWT");
+      } else {
+        console.log("Error desconocido al verificar el token");
+      }
     }
 
     // Si el payload no es un objeto, devolvemos null

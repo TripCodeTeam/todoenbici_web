@@ -1,12 +1,12 @@
-// Endpoint.ts
 import { NextResponse } from "next/server";
-import CoordinatesService from "@/classes/CordinatesServices"; // Asegúrate de tener la ruta correcta
+import CoordinatesService from "@/classes/CordinatesServices";
 import { GetUbication } from "@/components/handlers/Geo";
 import TokenService from "@/classes/Token";
 
 interface ReqProps {
-  longitude: number;
-  latitude: number;
+  longitude: string;
+  latitude: string;
+  state: string;
 }
 
 interface cordenatesProps {
@@ -14,7 +14,7 @@ interface cordenatesProps {
   country: string;
 }
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     // Utilizamos CoordinatesService para obtener las últimas coordenadas
     const latestCoordinates = await CoordinatesService.getLatestCoordinates();
@@ -44,34 +44,42 @@ export async function POST(req: Request) {
     const decodedToken = TokenService.verifyToken(
       token,
       process.env.JWT_SECRET as string
-    ); // Reemplaza "tu-clave-secreta" con tu clave secreta
+    );
 
     if (!decodedToken) {
       return NextResponse.json({ message: "Token no válido" }, { status: 401 });
     }
 
-    const { longitude, latitude }: ReqProps = await req.json();
+    const { longitude, latitude, state }: ReqProps = await req.json();
+
+    console.log(longitude, latitude, state);
+
+    const NumberLongitude = Number(longitude);
+    const NumberLatitude = Number(latitude);
 
     const locationData: cordenatesProps = await GetUbication(
-      latitude,
-      longitude
+      NumberLatitude,
+      NumberLongitude
     );
+
+    console.log(locationData);
 
     // Crear nuevas coordenadas utilizando CoordinatesService
     const newCoordinates = await CoordinatesService.createCoordinates(
-      latitude,
-      longitude,
+      latitude as string,
+      longitude as string,
       locationData.city,
       locationData.country,
-      "Sample State"
+      state
     );
+
+    console.log(newCoordinates);
 
     return NextResponse.json({
       message: "Coordenadas guardadas exitosamente",
       newCoordinates,
     });
   } catch (error) {
-    console.error("Error al procesar la solicitud POST:", error);
-    return NextResponse.json("Error al procesar la solicitud POST");
+    return NextResponse.json(error);
   }
 }

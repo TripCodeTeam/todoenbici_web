@@ -25,7 +25,7 @@ function PostCards() {
     // Fetch posts and update state
     const fetchPosts = async () => {
       try {
-      const response = await axios.get("api/post/get")
+        const response = await axios.get("api/post/get");
         console.log(response.data);
         if (Array.isArray(response.data)) {
           setPosts(response.data);

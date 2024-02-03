@@ -49,13 +49,18 @@ function PromptComponent() {
           <div className={styles.boxIconGPT}>
             <Image className={styles.iconIA} src={IAIcon} alt="ia" />
           </div>
-          <input type="text" onChange={(e) => setPrompt(e.target.value)} />
+          <textarea
+            placeholder="Ingresa tu prompt"
+            onChange={(e) => setPrompt(e.target.value)}
+          />
         </div>
-        <button>Generate</button>
+        <div className={styles.btnGenerate}>
+          <button>Generate</button>
+        </div>
       </form>
+      {resultPrompt}
 
       <CreateForm />
-      {resultPrompt}
     </>
   );
 }

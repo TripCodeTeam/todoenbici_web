@@ -12,6 +12,7 @@
   backdrop-filter: blur(10px);
   z-index: 1000;
   transition: background-color 0.3s;
+  /* background: #b3b3b3; */
 }
 
 .logo {
@@ -140,7 +141,7 @@
   font-family: "Poppins", sans-serif;
   position: absolute;
   max-width: 300px;
-  height: 460px;
+  height: 510px;
   background-color: #a9a9a9;
   border-radius: 1em;
   padding: 10px;

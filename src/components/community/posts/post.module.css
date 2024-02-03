@@ -93,4 +93,8 @@
   .centerImages {
     padding-left: 0px;
   }
+
+  .imgPost {
+    width: 100%;
+  }
 }

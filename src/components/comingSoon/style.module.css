@@ -33,19 +33,19 @@
 }
 
 .infoDev {
-    font-weight: 400;
-    color: #616161;
+  font-weight: 400;
+  color: #616161;
 }
 
 .tripcode {
-    cursor: pointer;
-    margin-left: 2px;
-    color: black;
-    font-weight: 500;
+  cursor: pointer;
+  margin-left: 4px;
+  color: #b5b5b5;
+  font-weight: 500;
 }
 
 .tripcode:hover {
-    color: #171717;
+  color: #d5d5d5;
 }
 
 .icon {

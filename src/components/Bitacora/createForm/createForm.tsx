@@ -5,10 +5,20 @@ import { AiOutlineDelete } from "react-icons/ai";
 import Image from "next/image";
 import axios from "axios";
 import { useGlobalContext } from "@/components/context/ContextDashboard";
+import { ScalarPost } from "@/types/User";
+import { toast } from "sonner";
 
 const CreateForm: React.FC = () => {
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
   const { user } = useGlobalContext();
+  const [data, setData] = useState<ScalarPost>({
+    title: "",
+    content: "",
+    images: [],
+    videos: [],
+    location: "",
+    userId: "",
+  });
 
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -21,6 +31,14 @@ const CreateForm: React.FC = () => {
 
   const handleImageDelete = (index: number) => {
     setSelectedImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -37,17 +55,40 @@ const CreateForm: React.FC = () => {
         const response = await axios.post("/api/imagespost", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${user?.token}`,
           },
         });
 
         // Assuming the server response contains the URL of the uploaded image
         const imageUrl = response.data;
         imageUrls.push(imageUrl);
+
+        // Now you can use the 'imageUrls' array to save the URLs in MongoDB or perform any other action
+        console.log("Image URLs:", imageUrls);
       }
 
-      // Now you can use the 'imageUrls' array to save the URLs in MongoDB or perform any other action
-      console.log("Image URLs:", imageUrls);
+      const BodyReq = {
+        title: data.title,
+        content: data.content,
+        images: imageUrls,
+        video: "",
+        location: "",
+        userId: user?.id,
+      };
+
+      const NewPost = await axios.post("/api/post/create", BodyReq, {
+        headers: {
+          Authorization: `Bearer ${user?.token}`,
+        },
+      });
+
+      console.log(BodyReq);
+
+      const dataNewPost: ScalarPost = NewPost.data;
+      console.log(dataNewPost);
+
+      if (dataNewPost.id) {
+        toast.success("Publicacion creada");
+      }
 
       // Add your logic to save the URLs in MongoDB or perform any other action
     } catch (error) {
@@ -60,7 +101,12 @@ const CreateForm: React.FC = () => {
       <div className={styles.containerBitacora}>
         <form className={styles.formBox} onSubmit={handleSubmit}>
           <label htmlFor="title">Título</label>
-          <input type="text" id="title" placeholder="Título" />
+          <input
+            type="text"
+            name="title"
+            placeholder="Título"
+            onChange={handleChange}
+          />
 
           <label htmlFor="content">Contenido</label>
           <textarea
@@ -69,6 +115,8 @@ const CreateForm: React.FC = () => {
             rows={5}
             cols={50}
             placeholder="Contenido"
+            onChange={() => handleChange}
+            name="content"
           />
 
           <label htmlFor="image-upload">Subir imágenes</label>
@@ -76,6 +124,7 @@ const CreateForm: React.FC = () => {
             type="file"
             id="image-upload"
             accept="image/*"
+            name="images"
             multiple
             onChange={handleImageUpload}
           />
@@ -109,7 +158,7 @@ const CreateForm: React.FC = () => {
 
           <div className={styles.boxBtnForm}>
             <button className={styles.btnSubmit} type="submit">
-              Crear
+              Crear Publicacion
             </button>
           </div>
         </form>

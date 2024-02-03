@@ -21,7 +21,7 @@ import { MdAccountCircle } from "react-icons/md";
 //   openModal: (content: React.ReactNode) => void;
 // }
 
-function Navbar() {
+function Navbar({ isUser }: { isUser: boolean }) {
   const router = useRouter();
   const responsive = useMediaQuery({ query: "(min-width: 900px)" });
   const [openDropDown, setOpenDropDown] = useState(false);
@@ -120,7 +120,10 @@ function Navbar() {
               />
             )}
             {openDropDown ? (
-              <ul className={styles.dropdown}>
+              <ul
+                className={styles.dropdown}
+                {...(isUser ? null : { style: { height: "460px" } })}
+              >
                 <div className={styles.boxBtnClose}>
                   <div className={styles.boxAccount}>
                     <div className={styles.IconUser}>
@@ -224,11 +227,15 @@ function Navbar() {
                 </li>
 
                 {user && user.rol == "streamer" ? (
-                  <div className={styles.subAccount}>
-                    <Link href={"/profile/panel"} className={styles.login}>
-                      Panel
-                    </Link>
-                  </div>
+                  <li
+                    className={styles.dropdown_list}
+                    onClick={() => router.push("/profile/panel")}
+                  >
+                    <div className={styles.dropdown_link}>
+                      <PiUsersThreeFill />
+                      <span className={styles.dropdown_span}>Panel</span>
+                    </div>
+                  </li>
                 ) : null}
               </ul>
             ) : null}

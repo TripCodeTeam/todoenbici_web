@@ -11,6 +11,8 @@ import Navbar from "@/components/navBars/NavBar";
 import PostCards from "@/components/community/posts/PostCards";
 import { FiPlus } from "react-icons/fi";
 import { useGlobalContext } from "@/components/context/ContextDashboard";
+import Modal from "@/components/modal/Modal";
+import CreateForm from "@/components/Bitacora/createForm/createForm";
 
 const CommunityInit: React.FC = () => {
   const { user } = useGlobalContext();
@@ -18,7 +20,11 @@ const CommunityInit: React.FC = () => {
   const [latestTempPlaybackId, setLatestTempPlaybackId] =
     useState<StreamData | null>(null);
   const playerRef = useRef(null);
-  const [shouldRenderContent, setShouldRenderContent] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setModalOpen(!modalOpen);
+  };
 
   useEffect(() => {
     const fetchLatestTempPlaybackId = async () => {
@@ -33,9 +39,14 @@ const CommunityInit: React.FC = () => {
     fetchLatestTempPlaybackId();
   }, []);
 
-  return  (
+  return (
     <>
-      <Navbar />
+      <Navbar isUser={user?.rol == "streamer" ? true : false}/>
+      {modalOpen ? (
+        <Modal isOpen={modalOpen} onClose={handleOpenModal}>
+          <CreateForm />
+        </Modal>
+      ) : null}
       <div className={styles.createBoxPosts}>
         <h3>Comparte tu viaje en Bici con la comunidad</h3>
         <div className={styles.btnCreatePost}>
@@ -43,7 +54,7 @@ const CommunityInit: React.FC = () => {
             <div className={styles.bixIconCreate}>
               <FiPlus size={20} />
             </div>
-            <p>Crear</p>
+            <p onClick={handleOpenModal}>Crear</p>
           </button>
         </div>
       </div>

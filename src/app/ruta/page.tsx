@@ -6,6 +6,7 @@ import axios from "axios";
 import styles from "./styles.module.css";
 import Navbar from "@/components/navBars/NavBar";
 import InfoMap from "@/components/maps/InfoMap";
+import { useGlobalContext } from "@/components/context/ContextDashboard";
 
 interface Coordinates {
   latitude: number;
@@ -16,6 +17,7 @@ function RutaPage() {
   const [coordinates, setCoordinates] = useState<Coordinates[]>([]);
   const [mapLoaded, setMapLoaded] = useState<boolean>(false);
   const [openChevron, setOpenChevron] = useState<boolean>(false);
+  const { user } = useGlobalContext();
 
   const handleChangeChevron = () => {
     setOpenChevron(!openChevron);
@@ -38,7 +40,7 @@ function RutaPage() {
 
   return (
     <>
-      <Navbar />
+      <Navbar isUser={user?.rol == "streamer" ? true : false} />
       <div className={styles.containerPage}>
         <h1 className={styles.titleHeader}>
           Cicloviaje en Directo: Descubre mi Ruta

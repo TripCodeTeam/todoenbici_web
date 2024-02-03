@@ -5,6 +5,7 @@
     width: 90%;
     margin-left: 5%;
     z-index: 9999;
+    margin-bottom: 2em;
 }
 
 .centerSelect {
@@ -16,4 +17,8 @@
 .centerSelect p {
     display: grid;
     place-content: center;
+}
+
+.basic_single {
+    background: gray;
 }

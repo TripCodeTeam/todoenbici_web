@@ -1,0 +1,19 @@
+meta {
+  name: New Coordenate
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{Backend_url}}/api/coordinates
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "latitude": "6.2442",
+    "longitude": "-75.5814",
+    "state": "Pedaleando"
+  }
+}
