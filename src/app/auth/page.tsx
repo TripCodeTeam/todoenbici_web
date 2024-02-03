@@ -8,12 +8,14 @@ import logoTripCode from "@/assets/logo_page.png";
 import Signin from "@/components/auth/signin/page";
 import Signup from "@/components/auth/signup/page";
 import Navbar from "@/components/navBars/NavBar";
+import { useGlobalContext } from "@/components/context/ContextDashboard";
 
 function OneContent() {
   const [selectLogin, setSelectLogin] = useState("signin");
+  const { user } = useGlobalContext();
   return (
     <>
-      <Navbar />
+      <Navbar isUser={user?.rol == "streamer" ? true : false} />
       <main className={styles.main}>
         <div className={styles.centerDiv}>
           <div className={styles.headerLogin}>

@@ -41,7 +41,7 @@ const CommunityInit: React.FC = () => {
 
   return (
     <>
-      <Navbar isUser={user?.rol == "streamer" ? true : false}/>
+      <Navbar isUser={user?.rol == "streamer" ? true : false} />
       {modalOpen ? (
         <Modal isOpen={modalOpen} onClose={handleOpenModal}>
           <CreateForm />
