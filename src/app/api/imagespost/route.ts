@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { v2 as cloudinary, UploadApiResponse } from "cloudinary";
 import { Readable } from "stream";
-// import TokenService from "@/classes/Token";
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME as string,
@@ -16,15 +15,18 @@ export async function POST(req: Request) {
 
     console.log(file);
 
-    if (!file || !(file instanceof Blob)) {
+    if (!file || typeof file === "string") {
       return NextResponse.json("No se ha subido ninguna imagen", {
         status: 400,
       });
     }
 
-    // Convert Blob to Readable Stream
-    const buffer = await file.arrayBuffer();
-    const stream = Readable.from(Buffer.from(buffer));
+    // Convert Blob to Buffer
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+
+    // Convert Buffer to Readable Stream
+    const stream = Readable.from(buffer);
 
     const response = await new Promise<UploadApiResponse>((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(

@@ -33,7 +33,9 @@ const CreateForm: React.FC = () => {
     setSelectedImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setData((prev) => ({
       ...prev,
@@ -57,6 +59,8 @@ const CreateForm: React.FC = () => {
             "Content-Type": "multipart/form-data",
           },
         });
+
+        console.log(response);
 
         // Assuming the server response contains the URL of the uploaded image
         const imageUrl = response.data;
@@ -115,7 +119,7 @@ const CreateForm: React.FC = () => {
             rows={5}
             cols={50}
             placeholder="Contenido"
-            onChange={() => handleChange}
+            onChange={handleChange} // Aquí está el cambio
             name="content"
           />
 

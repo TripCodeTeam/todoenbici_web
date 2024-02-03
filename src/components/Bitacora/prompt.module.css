@@ -30,7 +30,9 @@
   padding: 10px;
   border-radius: 10px;
   color: black;
-  resize: vertical;
+  resize: none;
+  form-sizing: content;
+  font-weight: 500;
 }
 
 .boxIconGPT {
