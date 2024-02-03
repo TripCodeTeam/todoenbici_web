@@ -1,18 +1,18 @@
 import { prisma } from "@/prisma/db";
-import { ScalarPost, Like, Dislike, ScalarUser } from "@/types/User";
+import { ScalarPost } from "@/types/User";
 import { Post, Prisma } from "@prisma/client";
 
 class PostService {
   // Create post method
   static async create(data: ScalarPost): Promise<Post> {
-    const { content, images, video, location, userId } = data;
+    const { content, images, videos, location, userId } = data;
 
     return prisma.post.create({
       data: {
         content,
         images,
-        video,
         location,
+        videos,
         userId,
       },
     });
