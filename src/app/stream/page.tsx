@@ -1,3 +1,5 @@
+"use client"
+
 import ComingSoon from "@/components/comingSoon/ComingSoon";
 import { useGlobalContext } from "@/components/context/ContextDashboard";
 import Navbar from "@/components/navBars/NavBar";
