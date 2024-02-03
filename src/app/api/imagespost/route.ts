@@ -16,9 +16,12 @@ export async function POST(req: Request) {
     console.log(file);
 
     if (!file || typeof file === "string") {
-      return NextResponse.json("No se ha subido ninguna imagen", {
-        status: 400,
-      });
+      return NextResponse.json(
+        { message: "No se ha subido ninguna imagen" },
+        {
+          status: 400,
+        }
+      );
     }
 
     // Convert Blob to Buffer
@@ -41,15 +44,29 @@ export async function POST(req: Request) {
       );
 
       stream.pipe(uploadStream);
+    }).catch((error) => {
+      console.error(`Error al subir la imagen a Cloudinary: ${error}`);
+      return NextResponse.json(
+        { message: "Error al subir la imagen a Cloudinary" },
+        {
+          status: 500,
+        }
+      );
     });
 
-    const url = response.secure_url;
-
-    return NextResponse.json(url);
+    if ("secure_url" in response) {
+      const url = response.secure_url;
+      return NextResponse.json(url);
+    } else {
+      return response;
+    }
   } catch (error) {
     console.error(`Error al subir la imagen a Cloudinary: ${error}`);
-    return NextResponse.json("Error al subir la imagen a Cloudinary", {
-      status: 500,
-    });
+    return NextResponse.json(
+      { message: "Error al subir la imagen a Cloudinary" },
+      {
+        status: 500,
+      }
+    );
   }
 }
