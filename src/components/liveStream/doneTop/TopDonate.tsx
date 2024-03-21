@@ -15,7 +15,7 @@ function TopDonate() {
         </div>
         <h2>Donadores del mes</h2>
       </div>
-      <div className={styles.donateUser}>
+      {/* <div className={styles.donateUser}>
         <div className={styles.infoUser}>
           <div className={styles.boxImageUser}>
             <Avatar
@@ -33,7 +33,8 @@ function TopDonate() {
           </div>
           <p className={styles.starCantity}>13k</p>
         </div>
-      </div>
+      </div> */}
+      <p>Las donaciones no estan disponibles por el momento</p>
     </>
   );
 }
