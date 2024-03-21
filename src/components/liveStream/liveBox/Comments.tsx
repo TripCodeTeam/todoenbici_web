@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+"use client"
+
+import React, { useRef } from "react";
 import styles from "./comments.module.css";
-import { IoIosColorWand } from "react-icons/io";
-import { RiEmojiStickerLine } from "react-icons/ri";
 import { useWebSocket } from "next-ws/client";
 import { useGlobalContext } from "@/components/context/ContextDashboard";
 import { LuSendHorizonal } from "react-icons/lu";
