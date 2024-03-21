@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <SpeedInsights />
       <Analytics />
-      <WebSocketProvider url="ws://localhost:3000/api/ws">
+      <WebSocketProvider url="ws://todoenbici.vercel.app/api/ws">
         <GlobalProvider>
           <body>{children}</body>
         </GlobalProvider>
