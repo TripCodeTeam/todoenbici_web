@@ -96,6 +96,22 @@ model TempPlaybackId {
     createAt   DateTime @default(now())
 }
 
+model StreamEvent {
+    id        String   @id @default(uuid()) @map("_id")
+    eventType String
+    eventData Json
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model StreamComments {
+    id        String   @id @default(uuid()) @map("_id")
+    userId    String
+    streamId  String
+    comment   String
+    createdAt DateTime @default(now())
+}
+
 enum Role {
     viewer
     streamer

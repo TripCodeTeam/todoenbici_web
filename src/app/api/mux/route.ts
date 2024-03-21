@@ -1,73 +1,40 @@
+import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 
-const webhookSecret = process.env.MUX_SIGNING_SECRET as string;
+const prisma = new PrismaClient();
+const muxSigningSecret = process.env.MUX_SIGNING_SECRET; // Tu secret de Mux
 
 export async function POST(req: Request) {
-  const signature = req.headers.get("mux-signature") as string;
-  const [t, v1] = signature.split(",");
-
   const body = await req.json();
+  const { type, data } = body;
 
-  const timestamp = t.split("=")[1];
-  const receivedSignature = v1.split("=")[1];
+  // Obtener la firma del encabezado de la solicitud
+  const signature = req.headers.get("mux-signature");
 
-  const payload = timestamp + "." + JSON.stringify(req.body);
-  const hmac = crypto.createHmac("sha256", webhookSecret);
-  const expectedSignature = hmac.update(payload).digest("hex");
+  // Verificar la firma
+  if (muxSigningSecret !== undefined) {
+    const expectedSignature = crypto
+      .createHmac("sha256", muxSigningSecret)
+      .update(JSON.stringify(body))
+      .digest("hex");
 
-  if (receivedSignature === expectedSignature) {
-    switch (body.type) {
-      case "video.asset.created":
-        console.log("Un activo de video fue creado");
-        // Aquí puedes agregar la lógica para manejar este evento
-        break;
-      case "video.asset.ready":
-        console.log("Un activo de video está listo para ser transmitido");
-        // Aquí puedes agregar la lógica para manejar este evento
-        break;
-      case "video.asset.deleted":
-        console.log("Un activo de video fue eliminado");
-        // Aquí puedes agregar la lógica para manejar este evento
-        break;
-      case "video.live_stream.created":
-        console.log("Se creó una transmisión en vivo");
-        // Aquí puedes agregar la lógica para manejar este evento
-        break;
-      case "video.live_stream.connected":
-        console.log("Se conectó una transmisión en vivo");
-        // Aquí puedes agregar la lógica para manejar este evento
-        break;
-      case "video.live_stream.disconnected":
-        console.log("Se desconectó una transmisión en vivo");
-        // Aquí puedes agregar la lógica para manejar este evento
-        break;
-      case "video.live_stream.recording":
-        console.log("Una transmisión en vivo está grabando");
-        // Aquí puedes agregar la lógica para manejar este evento
-        break;
-      case "video.live_stream.active":
-        console.log("Una transmisión en vivo está activa");
-        // Aquí puedes agregar la lógica para manejar este evento
-        break;
-      case "video.live_stream.idle":
-        console.log("Una transmisión en vivo está inactiva");
-        // Aquí puedes agregar la lógica para manejar este evento
-        break;
-      case "video.live_stream.finished":
-        console.log("Una transmisión en vivo ha terminado");
-        // Aquí puedes agregar la lógica para manejar este evento
-        break;
-      default:
-        console.log(`Recibido tipo de evento desconocido: ${body.type}`);
+    if (signature !== expectedSignature) {
+      // La firma no coincide, por lo que la solicitud puede no ser de Mux
+      return NextResponse.json(
+        { message: "Invalid signature" },
+        { status: 401 }
+      );
     }
 
-    return NextResponse.json({ received: true });
+    // Crear un nuevo StreamEvent en la base de datos
+    await prisma.streamEvent.create({
+      data: {
+        eventType: type,
+        eventData: data,
+      },
+    });
   }
 
-  if (receivedSignature !== expectedSignature) {
-    return NextResponse.json({ error: "Invalid signature" });
-  }
-
-  return NextResponse.json({ received: true });
+  return NextResponse.json({ message: "ok" });
 }

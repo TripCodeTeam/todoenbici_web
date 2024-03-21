@@ -69,9 +69,22 @@ export type Coordinates = {
   createdAt: string;
 };
 
+export type ScalarStreamComments = {
+  id?: string;
+  userId: string;
+  streamId: string;
+  comment: string;
+  createdAt?: Date;
+};
+
 export interface StreamData {
   live_stream_id: string;
   stream_key: string;
   playbackId: string;
   // Add other properties if necessary
+}
+
+export interface MuxEvent {
+  type: string;
+  data: any;
 }

@@ -11,15 +11,6 @@ import Cookies from "js-cookie";
 
 import { AuthUser } from "@/types/User";
 
-// interface User {
-//   id: string;
-//   username: string;
-//   email: string;
-//   avatar: string;
-//   rol: String;
-//   token: string;
-// }
-
 interface GlobalContextType {
   user: AuthUser | null;
   setUserData: (userData: AuthUser) => void;

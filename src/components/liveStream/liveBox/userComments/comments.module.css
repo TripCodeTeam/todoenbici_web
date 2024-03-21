@@ -1,0 +1,14 @@
+.headerUser {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.boxImageUser, .nameUser {
+    display: grid;
+    place-content: center;
+}
+
+.nameUser {
+    font-weight: 500;
+}

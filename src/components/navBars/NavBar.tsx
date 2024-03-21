@@ -45,8 +45,8 @@ function Navbar({ isUser }: { isUser: boolean }) {
         {responsive ? (
           <div className={styles.account}>
             <div className={styles.subAccount}>
-              <Link href={"/guia"} className={styles.login}>
-                Equipaje
+              <Link href={"/stream"} className={styles.login}>
+               Streaming
               </Link>
             </div>
             <div className={styles.subAccount}>
@@ -67,8 +67,8 @@ function Navbar({ isUser }: { isUser: boolean }) {
             </div>
 
             <div className={styles.subAccount}>
-              <Link href={"/community"} className={styles.login}>
-                Comunidad
+              <Link href={"/books"} className={styles.login}>
+                Libros
               </Link>
             </div>
 
@@ -196,11 +196,11 @@ function Navbar({ isUser }: { isUser: boolean }) {
 
                 <li
                   className={styles.dropdown_list}
-                  onClick={() => router.push("/guia")}
+                  onClick={() => router.push("/stream")}
                 >
                   <div className={styles.dropdown_link}>
                     <FaBicycle />
-                    <span className={styles.dropdown_span}>Equipaje</span>
+                    <span className={styles.dropdown_span}>Streaming</span>
                   </div>
                 </li>
 
@@ -218,11 +218,11 @@ function Navbar({ isUser }: { isUser: boolean }) {
 
                 <li
                   className={styles.dropdown_list}
-                  onClick={() => router.push("/community")}
+                  onClick={() => router.push("/books")}
                 >
                   <div className={styles.dropdown_link}>
                     <PiUsersThreeFill />
-                    <span className={styles.dropdown_span}>Comunidad</span>
+                    <span className={styles.dropdown_span}>Libros</span>
                   </div>
                 </li>
 
