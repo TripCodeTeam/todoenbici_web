@@ -35,6 +35,7 @@ function CommentsContainer({
         <input
           className={styles.inputComment}
           ref={inputRef}
+          placeholder="Escribe un comentario"
           type="text"
           disabled={inLive == false && user.user?.id ? false : true}
         />
