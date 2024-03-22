@@ -69,26 +69,14 @@ function StreamPage() {
       <Navbar isUser={user?.rol == "streamer" ? true : false} />
       <div className={styles.SupraBox}>
         <div className={styles.box}>
-          {latestTempPlaybackId == null ? (
-            <>
-              <div className={styles.boxImageOffline}>
-                <Image
-                  className={styles.imgBannerOffline}
-                  src={bannerStreamOffline}
-                  alt="banner"
-                />
-              </div>
-            </>
-          ) : (
-            <MuxPlayer
-              className={styles.boxLive}
-              ref={playerRef}
-              streamType="live"
-              playbackId={latestTempPlaybackId?.playbackId || undefined}
-              primaryColor="#FFFFFF"
-              secondaryColor="#000000"
-            />
-          )}
+          <MuxPlayer
+            className={styles.boxLive}
+            ref={playerRef}
+            streamType="live"
+            playbackId={latestTempPlaybackId?.playbackId || undefined}
+            primaryColor="#FFFFFF"
+            secondaryColor="#000000"
+          />
           <div className={styles.box}>
             <div className={styles.warnOffline}>
               <div className={styles.centerWarnOffline}>
