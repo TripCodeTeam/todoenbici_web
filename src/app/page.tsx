@@ -27,8 +27,6 @@ function Home() {
   const isBigScreen = useMediaQuery({ query: "(min-width: 900px)" });
 
   const { user } = useGlobalContext();
-  console.log(user);
-
   return (
     <>
       <Navbar isUser={user?.rol == "streamer" ? true : false} />
