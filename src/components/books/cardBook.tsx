@@ -6,18 +6,29 @@ import { IoIosAlert } from "react-icons/io";
 import { IoStarSharp } from "react-icons/io5";
 import Modal from "../modal/Modal";
 
+interface Portadas {
+  [key: string]: string;
+}
+
 function CardBook({
   idBook,
-  portada,
+  portadas,
   name,
   description,
 }: {
   idBook: string;
-  portada: string;
+  portadas: Portadas;
   name: string;
   description: string;
 }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [language, setLanguage] = useState<string>("Español");
+
+  const handleLanguageChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setLanguage(event.target.value); // Actualiza el estado cuando se selecciona un idioma diferente
+  };
 
   const handleOpenModel = () => {
     setIsOpen(!isOpen);
@@ -31,11 +42,35 @@ function CardBook({
             <div className={styles.iconStatus}>
               <IoIosAlert />
             </div>
-            <p>No comprado</p>
+            <p>No Disponible</p>
+          </div>
+          <div>
+            <select
+              className={styles.selectForm}
+              value={language}
+              onChange={handleLanguageChange}
+            >
+              <option className={styles.optionSelect} value="Español">
+                Español
+              </option>
+              <option className={styles.optionSelect} value="Ingles">
+                Ingles
+              </option>
+              <option className={styles.optionSelect} value="Portugues">
+                Portugues
+              </option>
+              <option className={styles.optionSelect} value="Italiano">
+                Itialiano
+              </option>
+            </select>
           </div>
         </div>
         <div className={styles.bookImgPort}>
-          <img className={styles.portBook} src={portada} alt="portada" />
+          <img
+            className={styles.portBook}
+            src={portadas[language]}
+            alt="portada"
+          />
         </div>
         <h3 className={styles.titleBook}>{name}</h3>
         <p>{description}</p>
@@ -52,8 +87,7 @@ function CardBook({
             </div>
             <p className={styles.numberRat}>5.0</p>
             <Modal isOpen={isOpen} onClose={handleOpenModel}>
-              <h4>Paga con el metodo que mas te paresca</h4>
-              
+              <h4>Libro no disponible por el momento</h4>
             </Modal>
           </div>
         </div>
