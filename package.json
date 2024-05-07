@@ -10,8 +10,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@huggingface/inference": "^2.6.6",
     "@mux/mux-node": "^7.3.3",
     "@mux/mux-player-react": "^2.3.2",
+    "@paypal/checkout-server-sdk": "^1.0.3",
     "@prisma/client": "^5.8.1",
     "@react-google-maps/api": "^2.19.2",
     "@react-spring/web": "^9.7.3",
@@ -24,6 +26,7 @@
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "mapbox-gl": "^3.1.2",
+    "mercadopago": "^1.5.16",
     "next": "14.0.0",
     "next-ws": "^1.0.1",
     "openai": "^4.26.0",
@@ -49,6 +52,7 @@
     "@types/jsonwebtoken": "^9.0.5",
     "@types/mapbox-gl": "^2.7.19",
     "@types/node": "^20",
+    "@types/paypal__checkout-server-sdk": "^1.0.8",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-slick": "^0.23.12",

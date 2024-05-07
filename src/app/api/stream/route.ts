@@ -2,6 +2,7 @@ import Mux from "@mux/mux-node";
 import { NextResponse } from "next/server";
 
 export async function POST() {
+  
   const { Video } = new Mux(
     process.env.MUX_TOKEN_ID as string,
     process.env.MUX_TOKEN_SECRET as string

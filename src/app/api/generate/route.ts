@@ -1,20 +1,26 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+import axios from "axios";
 
 export async function POST(req: Request) {
   const { prompt } = await req.json();
 
   console.log(prompt);
 
-  const chatCompletion = await openai.chat.completions.create({
-    messages: [{ role: "user", content: prompt }],
-    temperature: 1,
-    model: "gpt-3.5-turbo",
-  });
+  try {
+    const response = await axios.post(
+      "https://api-inference.huggingface.co/models/databricks/dbrx-instruct",
+      {
+        inputs: prompt,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.HUGGINGS_API_KEY}`,
+        },
+      }
+    );
 
-  return NextResponse.json(chatCompletion.choices[0].message.content);
+    return NextResponse.json(response.data);
+  } catch (error) {
+    console.log(error);
+  }
 }
