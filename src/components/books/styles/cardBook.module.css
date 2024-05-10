@@ -66,16 +66,17 @@
   padding: 10px 15px;
   font-size: 15px;
   background: #4b80f2;
-  border-radius: 16px;
+  border-radius: 8px;
   border: transparent;
   cursor: pointer;
+  color: #ffff;
 }
 
 .btnPreviewBook {
   padding: 10px 15px;
   font-size: 15px;
   background: green;
-  border-radius: 16px;
+  border-radius: 8px;
   border: transparent;
   cursor: pointer;
 }
@@ -94,4 +95,95 @@
 .numberRat {
   display: grid;
   place-content: center;
+}
+
+.containerQr {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.titleCoti {
+  font-weight: 600;
+  color: #00b800;
+}
+
+.scan {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.boxImageQr {
+  display: grid;
+  place-content: center;
+}
+
+.qrImage {
+  filter: drop-shadow(0px 0px 10px #000000);
+}
+
+.noScan {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wpBtn {
+  display: grid;
+  place-content: center;
+}
+
+.iconWp {
+  color: #00b800;
+  filter: drop-shadow(0px 0px 10px #000000);
+}
+
+
+.centerWpBtn {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 5px 10px;
+  background: #9eff90;
+  border-radius: 8px;
+  filter: drop-shadow(0px 0px 10px #484848);
+  cursor: pointer;
+}
+
+/* .centerWpBtn:hover {
+  background: #e9e9e9;
+} */
+
+.textWp {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.boxIconRedir,
+.boxIconWp {
+  display: grid;
+  place-content: center;
+}
+
+.labelBtnWp {
+  color: #00b800;
+  font-weight: 600;
+  display: grid;
+  place-content: center;
+}
+
+.boxIconRedir {
+  border-radius: 50%;
+  background: #ccffc4;
+  padding: 5px;
+}
+
+.iconArrowRedir {
+  color: #076d08;
 }

@@ -15,7 +15,7 @@
 .modal_content {
   background: #343434;
   padding: 20px;
-  border-radius: 4px;
+  border-radius: 16px;
   width: 80%;
   max-width: 500px;
   position: relative;
@@ -26,6 +26,10 @@
   top: 10px;
   right: 10px;
   border: 1px solid #7d7d7d;
-  border-radius: 10px;
+  border-radius: 8px;
   background: red;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: white;
+  font-weight: 500;
 }

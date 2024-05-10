@@ -5,6 +5,12 @@ import styles from "./styles/cardBook.module.css";
 import { IoIosAlert } from "react-icons/io";
 import { IoStarSharp } from "react-icons/io5";
 import Modal from "../modal/Modal";
+import Image from "next/image";
+
+import qrImage from "@/assets/books port/qr_venta_white.png";
+import { TbArrowNarrowRight, TbBrandWhatsapp } from "react-icons/tb";
+import { PiArrowUpRightBold } from "react-icons/pi";
+import { useRouter } from "next/navigation";
 
 interface Portadas {
   [key: string]: string;
@@ -23,6 +29,7 @@ function CardBook({
 }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [language, setLanguage] = useState<string>("Español");
+  const router = useRouter();
 
   const handleLanguageChange = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -81,17 +88,58 @@ function CardBook({
             </button>
             <button className={styles.btnPreviewBook}>Vista Previa</button>
           </div>
-          <div className={styles.rating}>
+          {/* <div className={styles.rating}>
             <div className={styles.iconStart}>
               <IoStarSharp size={20} style={{ color: "yellow" }} />
             </div>
             <p className={styles.numberRat}>5.0</p>
-            <Modal isOpen={isOpen} onClose={handleOpenModel}>
-              <h4>Libro no disponible por el momento</h4>
-            </Modal>
-          </div>
+          </div> */}
         </div>
       </div>
+
+      <Modal isOpen={isOpen} onClose={handleOpenModel}>
+        <div className={styles.containerQr}>
+          <h4 className={styles.titleCoti}>Cotiza tu libro desde Whatsapp</h4>
+
+          <div className={styles.scan}>
+            <p>Escanea el codigo QR</p>
+            <div className={styles.boxImageQr}>
+              <Image
+                className={styles.qrImage}
+                src={qrImage}
+                alt="qr"
+                width={200}
+                height={200}
+              />
+            </div>
+          </div>
+
+          <div className={styles.noScan}>
+            <p>No tienes para escanear?</p>
+            <div className={styles.wpBtn}>
+              <div
+                className={styles.centerWpBtn}
+                onClick={() =>
+                  router.push("https://wa.me/p/6010415189083238/593989196119")
+                }
+              >
+                <div className={styles.textWp}>
+                  <div className={styles.boxIconWp}>
+                    <TbBrandWhatsapp className={styles.iconWp} size={25} />
+                  </div>
+                  <p className={styles.labelBtnWp}>Cotizar libro</p>
+                </div>
+                <div className={styles.boxIconRedir}>
+                  <TbArrowNarrowRight
+                    className={styles.iconArrowRedir}
+                    size={20}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 }
