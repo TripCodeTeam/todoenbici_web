@@ -16,10 +16,7 @@ import { IoMdCloseCircle, IoIosMusicalNotes } from "react-icons/io";
 import { FaMap, FaBicycle, FaBed } from "react-icons/fa";
 import { PiUsersThreeFill } from "react-icons/pi";
 import { MdAccountCircle } from "react-icons/md";
-
-// interface NavBarProps {
-//   openModal: (content: React.ReactNode) => void;
-// }
+import { toast } from "sonner";
 
 function Navbar({ isUser }: { isUser: boolean }) {
   const router = useRouter();
@@ -45,9 +42,9 @@ function Navbar({ isUser }: { isUser: boolean }) {
         {responsive ? (
           <div className={styles.account}>
             <div className={styles.subAccount}>
-              <Link href={"/stream"} className={styles.login}>
-               Streaming
-              </Link>
+              <div onClick={() => toast.warning("muy pronto")} className={styles.login}>
+                Streaming
+              </div>
             </div>
             <div className={styles.subAccount}>
               <Link href={"/music"} className={styles.login}>
@@ -67,46 +64,10 @@ function Navbar({ isUser }: { isUser: boolean }) {
             </div>
 
             <div className={styles.subAccount}>
-              <Link href={"/books"} className={styles.login}>
+              <div onClick={() => toast.warning("Muy Pronto ...")} className={styles.login}>
                 Libros
-              </Link>
+              </div>
             </div>
-
-            {user && user.rol == "streamer" ? (
-              <div className={styles.subAccount}>
-                <Link href={"/profile/panel"} className={styles.login}>
-                  Panel
-                </Link>
-              </div>
-            ) : null}
-
-            {user ? (
-              <>
-                <div
-                  className={styles.supaBoxAccount}
-                  onClick={() => router.push(`/profile/${user.username}`)}
-                >
-                  <div className={styles.boxAccount}>
-                    <Avatar
-                      src={"https://github.com/foultrip.png"}
-                      round={true}
-                      size="20"
-                    />
-                  </div>
-                  <p className={styles.username}>{user?.username}</p>
-                </div>
-              </>
-            ) : (
-              <div
-                className={styles.supaBoxAccountResponsiveDesktop}
-                onClick={() => router.push("/auth")}
-              >
-                <div className={styles.boxAccount}>
-                  <MdAccountCircle size={25} />
-                </div>
-                <p className={styles.username}>Cuenta</p>
-              </div>
-            )}
           </div>
         ) : (
           <div
@@ -115,49 +76,14 @@ function Navbar({ isUser }: { isUser: boolean }) {
             {openDropDown ? null : (
               <AiOutlineMenu
                 size={20}
-                className={openDropDown}
                 onClick={handlerDropDown}
               />
             )}
             {openDropDown ? (
               <ul
                 className={styles.dropdown}
-                {...(isUser ? null : { style: { height: "460px" } })}
               >
                 <div className={styles.boxBtnClose}>
-                  <div className={styles.boxAccount}>
-                    <div className={styles.IconUser}>
-                      {user ? (
-                        <>
-                          <div
-                            className={styles.supaBoxAccountResponsive}
-                            onClick={() =>
-                              router.push(`/profile/${user.username}`)
-                            }
-                          >
-                            <div className={styles.boxAccount}>
-                              <Avatar
-                                src={"https://github.com/foultrip.png"}
-                                round={true}
-                                size="20"
-                              />
-                            </div>
-                            <p className={styles.username}>{user?.username}</p>
-                          </div>
-                        </>
-                      ) : (
-                        <div
-                          className={styles.supaBoxAccountResponsive}
-                          onClick={() => router.push("/auth")}
-                        >
-                          <div className={styles.boxAccount}>
-                            <MdAccountCircle size={25} />
-                          </div>
-                          <p className={styles.username}>Cuenta</p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
                   <IoMdCloseCircle
                     size={25}
                     onClick={handlerDropDown}
@@ -196,7 +122,7 @@ function Navbar({ isUser }: { isUser: boolean }) {
 
                 <li
                   className={styles.dropdown_list}
-                  onClick={() => router.push("/stream")}
+                  onClick={() => toast.warning("muy pronto")}
                 >
                   <div className={styles.dropdown_link}>
                     <FaBicycle />
@@ -218,7 +144,7 @@ function Navbar({ isUser }: { isUser: boolean }) {
 
                 <li
                   className={styles.dropdown_list}
-                  onClick={() => router.push("/books")}
+                  onClick={() => toast.warning("Muy Pronto ...")}
                 >
                   <div className={styles.dropdown_link}>
                     <PiUsersThreeFill />

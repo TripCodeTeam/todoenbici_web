@@ -141,7 +141,7 @@
   font-family: "Poppins", sans-serif;
   position: absolute;
   max-width: 300px;
-  height: 510px;
+  height: 430px;
   background-color: #a9a9a9;
   border-radius: 1em;
   padding: 10px;
@@ -190,6 +190,6 @@
 
 .boxBtnClose {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   cursor: pointer;
 }
