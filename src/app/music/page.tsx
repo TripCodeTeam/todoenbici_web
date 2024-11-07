@@ -10,13 +10,11 @@ import { GrSpotify } from "react-icons/gr";
 import { IoIosArrowRoundForward, IoIosArrowRoundBack } from "react-icons/io";
 import MusicPlayer from "@/components/music/reproductor";
 import Navbar from "@/components/navBars/NavBar";
-import { useGlobalContext } from "@/components/context/ContextDashboard";
 
 function Music() {
   const [musicData, setMusicData] = useState<MusicData | null>(null);
   //   const [openAlbum, setOpenAlbum] = useState(false);
   const [selectArt, setSelectArt] = useState(0);
-  const { user } = useGlobalContext();
 
   useEffect(() => {
     const musiData = async () => {
@@ -33,7 +31,7 @@ function Music() {
 
   return (
     <>
-      <Navbar isUser={user?.rol == "streamer" ? true : false} />
+      <Navbar  />
       <main className={styles.ArtistContainer}>
         <h1 className={styles.titleMusic}>La vida sin música sería un error</h1>
         {selectArt == 0 ? (

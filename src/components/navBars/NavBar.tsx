@@ -9,20 +9,17 @@ import Avatar from "react-avatar";
 import iconLogo from "@/assets/logo_page.png";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useGlobalContext } from "../context/ContextDashboard";
 
 import { AiOutlineMenu, AiFillHome } from "react-icons/ai";
 import { IoMdCloseCircle, IoIosMusicalNotes } from "react-icons/io";
 import { FaMap, FaBicycle, FaBed } from "react-icons/fa";
 import { PiUsersThreeFill } from "react-icons/pi";
-import { MdAccountCircle } from "react-icons/md";
 import { toast } from "sonner";
 
-function Navbar({ isUser }: { isUser: boolean }) {
+function Navbar() {
   const router = useRouter();
   const responsive = useMediaQuery({ query: "(min-width: 900px)" });
   const [openDropDown, setOpenDropDown] = useState(false);
-  const { user } = useGlobalContext();
 
   const handlerDropDown = () => {
     setOpenDropDown(!openDropDown);
@@ -151,18 +148,6 @@ function Navbar({ isUser }: { isUser: boolean }) {
                     <span className={styles.dropdown_span}>Libros</span>
                   </div>
                 </li>
-
-                {user && user.rol == "streamer" ? (
-                  <li
-                    className={styles.dropdown_list}
-                    onClick={() => router.push("/profile/panel")}
-                  >
-                    <div className={styles.dropdown_link}>
-                      <PiUsersThreeFill />
-                      <span className={styles.dropdown_span}>Panel</span>
-                    </div>
-                  </li>
-                ) : null}
               </ul>
             ) : null}
           </div>
